@@ -8,8 +8,7 @@ import Layout from './components/layout/Layout';
 function App() {
   return (
     <div className="App">
-     {/* <LinkRouter/> */}
-     <Layout/>
+     <LinkRouter/>
     </div>
   );
 }

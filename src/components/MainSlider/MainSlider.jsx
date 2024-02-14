@@ -1,5 +1,8 @@
 import React from 'react'
 import './__MainSlider.scss'
+import chair from '../../assets/images/chair.webp'
+import chair2 from '../../assets/images/chair2.webp'
+
 
 export default function MainSlider() {
   return (
@@ -11,7 +14,7 @@ export default function MainSlider() {
               <div
                   class="slider-item sliderActive d-block d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between jus align-items-center gap-5">
                   <div class="slider-image sliderPicActive" id="slider-image">
-                      <img src={sliderChair1} alt=""/>
+                      <img src={chair} alt=""/>
                   </div>
                   <div class="slider-text">
                       <h3 id="slider-sale" class="ddd slider-sale sliderItemActive">30% off</h3>
@@ -26,7 +29,7 @@ export default function MainSlider() {
               <div id="slider-item"
                   class="slider-item  sliderActive d-block d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between jus align-items-center gap-5">
                   <div class="slider-image" id="slider-image">
-                      <img src={sliderChair2} alt=""/>
+                      <img src={chair2} alt=""/>
                   </div>
                   <div class="slider-text">
                       <h3 class="ddd slider-sale" id="slider-sale">30% off</h3>
