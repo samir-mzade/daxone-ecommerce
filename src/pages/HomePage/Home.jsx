@@ -1,5 +1,7 @@
 import React from 'react'
 import MainSlider from '../../components/MainSlider/MainSlider'
+import AdvertisementSide from '../../components/AdvertisementSide/AdvertisementSide'
+
 
 
 
@@ -7,9 +9,10 @@ import MainSlider from '../../components/MainSlider/MainSlider'
 
 const Home = () => {
   return (
-      <div>
+    <>
         <MainSlider/>
-    </div>
+        <AdvertisementSide/>
+    </>
   )
 }
 
