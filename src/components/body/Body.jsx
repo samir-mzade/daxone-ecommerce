@@ -5,7 +5,7 @@ import  MainSlider  from '../MainSlider/MainSlider';
 export default function Body() {
   return (
     <>
-       <MainSlider/>
+       {/* <MainSlider/> */}
     </>
   )
 }
