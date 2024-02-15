@@ -9,7 +9,7 @@ import '../BurgerMenu/__BurgerMenu.scss'
 
 const Header = () => {
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
     
   const openBurger = () => {
     console.log("open");
