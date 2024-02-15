@@ -6,21 +6,6 @@ import { useState } from 'react';
 
 export const BurgerMenu = ({isOpen, closeBurger}) => {
 
-       
-        // return (
-        //     <div>
-        //         <div id="burger-menu" classNameName={`burger-menu ${isOpen ? 'burgerActive' : ''}`}>
-        //             {/* Burger menu content */}
-        //         </div>
-        //         <div id="body-overlay" classNameName={`body-overlay ${isOpen ? 'overlayActive' : ''}`} />
-        //         <button id="burger-menu-icon" onClick={openBurger}>Open Burger Menu</button>
-        //         <button id="burger-menu-close" onClick={closeBurger}>Close Burger Menu</button>
-        //     </div>
-        // );
- 
-
-
-
   return (
     <>
          <div id="burger-menu" className={`burger-menu ${isOpen ? 'burgerActive' : 'burger-menu'}`}>
