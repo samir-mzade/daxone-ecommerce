@@ -8,6 +8,9 @@ export const BurgerMenu = ({isOpen, closeBurger}) => {
 
   return (
     <>
+    <div className="main-body-overlay">
+        <div className={`body-overlay ${isOpen ? 'overlayActive' : 'body-overlay'}`} id="body-overlay"></div>
+    </div>
          <div id="burger-menu" className={`burger-menu ${isOpen ? 'burgerActive' : 'burger-menu'}`}>
                 <div id="burger-menu-close" className="burger-menu-close" onClick={closeBurger}>
                   <i className="fa-solid fa-xmark"></i>
