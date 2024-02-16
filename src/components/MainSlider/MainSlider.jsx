@@ -1,7 +1,8 @@
-import React , {useState} from 'react'
+import React, { useState } from 'react'
 import './__MainSlider.scss'
 import chair from '../../assets/images/chair.webp'
 import chair2 from '../../assets/images/chair2.webp'
+import { ShopNowButton } from '../ShopNowButton/ShopNowButton'
 
 
 
@@ -26,112 +27,61 @@ const MainSlider = () => {
         }
     ];
 
+    const [index, setIndex] = useState(0);
+
+    const nextSlider = () => {
+        setIndex((prevIndex) => {
+            let newIndex = prevIndex + 1;
+            if (newIndex >= sliderItems.length) {
+                newIndex = 0;
+            }
+            return newIndex;
+        });
+    };
+
+    const prevSlider = () => {
+        setIndex((prevIndex) => {
+            let newIndex = prevIndex - 1;
+            if (newIndex < 0) {
+                newIndex = sliderItems.length - 1;
+            }
+            return newIndex;
+        });
+    };
 
 
 
-
-
-   
-        const [index, setIndex] = useState(0);
-    
-        const nextSlider = () => {
-            setIndex((prevIndex) => {
-                let newIndex = prevIndex + 1;
-                if (newIndex >= sliderItems.length) {
-                    newIndex = 0;
-                }
-                return newIndex;
-            });
-        };
-    
-        const prevSlider = () => {
-            setIndex((prevIndex) => {
-                let newIndex = prevIndex - 1;
-                if (newIndex < 0) {
-                    newIndex = sliderItems.length - 1;
-                }
-                return newIndex;
-            });
-        };
-    
-    
-    
-        return (
-            <>
-                <section className="slider-container" id="slider-container">
-                    <div className="container">
-                        <div className="slider" id="slider">
-                            {sliderItems.map((item, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`slider-item ${idx === index ? 'sliderActive' : ''} d-block d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between align-items-center gap-5`}
-                                >
-                                    <div className={`slider-image ${idx === index ? 'sliderPicActive' : ''}`} id="slider-image">
-                                        <img src={item.image} alt="" />
-                                    </div>
-                                    <div className="slider-text">
-                                        <h3 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale">{item.text.sale}</h3>
-                                        <h1 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale" style={{ fontWeight: 'bold', marginTop: '40px' }}>{item.text.title}</h1>
-                                        <h5 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale">{item.text.description}</h5>
-                                        <button className={`shop-now-button  ${idx === index ? 'sliderItemActive' : ''} btn btn-form mt-5`}  >SHOP NOW</button>
-                                    </div>
+    return (
+        <>
+            <section className="slider-container" id="slider-container">
+                <div className="container">
+                    <div className="slider" id="slider">
+                        {sliderItems.map((item, idx) => (
+                            <div
+                                key={idx}
+                                className={`slider-item ${idx === index ? 'sliderActive' : ''} d-block d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between align-items-center gap-5`}
+                            >
+                                <div className={`slider-image ${idx === index ? 'sliderPicActive' : ''}`} id="slider-image">
+                                    <img src={item.image} alt="" />
                                 </div>
-                            ))}
-                            <div className="up-down-button d-flex flex-column justify-content-center align-item-center gap-3">
-                                <i id="up" className="fa-solid fa-chevron-up" onClick={nextSlider}></i>
-                                <span id="count" style={{ textAlign: 'center' }}>{index + 1}</span>
-                                <i id="down" className="fa-solid fa-chevron-down" onClick={prevSlider}></i>
+                                <div className="slider-text">
+                                    <h3 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale">{item.text.sale}</h3>
+                                    <h1 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale" style={{ fontWeight: 'bold', marginTop: '40px' }}>{item.text.title}</h1>
+                                    <h5 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale">{item.text.description}</h5>
+                                    <ShopNowButton index={index} idx={idx} item={item}/>
+                                </div>
                             </div>
+                        ))}
+                        <div className="up-down-button d-flex flex-column justify-content-center align-item-center gap-3">
+                            <i id="up" className="fa-solid fa-chevron-up" onClick={nextSlider}></i>
+                            <span id="count" style={{ textAlign: 'center' }}>{index + 1}</span>
+                            <i id="down" className="fa-solid fa-chevron-down" onClick={prevSlider}></i>
                         </div>
                     </div>
-                </section>
-            </>
-        );
-
-
-//   return (
-//     <>
-//     <section className="slider-container" id="slider-container">
-//       <div className="container">
-//           <div className="slider" id="slider">
-//               <div
-//                   className="slider-item sliderActive d-block d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between jus align-items-center gap-5">
-//                   <div className="slider-image sliderPicActive" id="slider-image">
-//                       <img src={sliderItems.chair} alt=""/>
-//                   </div>
-//                   <div className="slider-text">
-//                       <h3 id="slider-sale" className="ddd slider-sale sliderItemActive">30% off</h3>
-//                       <h1 id="slider-sale" className="ddd slider-sale sliderItemActive"
-//                           style={{fontWeight: "bold", marginTop: "40px"}}>{sliderItems[index]}</h1>
-//                       <h5 id="slider-sale" className="ddd slider-sale sliderItemActive">Collect from Daxone & get 30%
-//                           Discount.</h5>
-//                       <button id="slider-sale" className="shop-now-button btn btn-form mt-5 sliderItemActive">SHOP
-//                           NOW</button>
-//                   </div>
-//               </div>
-//               <div id="slider-item"
-//                   className="slider-item  sliderActive d-block d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between jus align-items-center gap-5">
-//                   <div className="slider-image" id="slider-image">
-//                       <img src={chair2} alt=""/>
-//                   </div>
-//                   <div className="slider-text">
-//                       <h3 className="ddd slider-sale" id="slider-sale">30% off</h3>
-//                       <h1 className="ddd slider-sale" id="slider-sale" style={{fontWeight: "bold", marginTop: "40px"}}>
-//                           Comfort Chair</h1>
-//                       <h5 className="ddd slider-sale" id="slider-sale">Collect from Daxone & get 30% Discount.</h5>
-//                       <button id="slider-sale" className="shop-now-button btn btn-form mt-5">SHOP NOW</button>
-//                   </div>
-//               </div>
-//               <div className="up-down-button d-flex flex-column justify-content-center align-item-center gap-3">
-//                   <i id="up" className="fa-solid fa-chevron-up" onClick={nextSlider}></i>
-//                   <span id="count" style={{textAlign: "center"}}>{index + 1}</span>
-//                   <i id="down" className="fa-solid fa-chevron-down" onClick={prevSlider}></i>
-//               </div>
-//           </div>
-//       </div>
-//   </section>
-//   </>
-//   )
+                </div>
+            </section>
+        </>
+    );
 }
 
 
