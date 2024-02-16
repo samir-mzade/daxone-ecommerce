@@ -68,7 +68,7 @@ const MainSlider = () => {
                                     <h3 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale">{item.text.sale}</h3>
                                     <h1 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale" style={{ fontWeight: 'bold', marginTop: '40px' }}>{item.text.title}</h1>
                                     <h5 className={`slider-sale ${idx === index ? 'sliderItemActive' : ''}`} id="slider-sale">{item.text.description}</h5>
-                                    <ShopNowButton index={index} idx={idx} item={item}/>
+                                    <ShopNowButton index={index} idx={idx}/>
                                 </div>
                             </div>
                         ))}

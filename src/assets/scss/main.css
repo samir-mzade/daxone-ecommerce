@@ -315,21 +315,6 @@ header nav .inner-container .nav-basket .burger-menu .burger-menu-list-footer-co
   opacity: 0;
   font-size: 2vw;
 }
-.slider-container .slider .slider-item .slider-text .shop-now-button {
-  color: #ff5151;
-  border: 1px solid #ff5151;
-  border-radius: 0;
-  padding: 10px 20px;
-  animation-fill-mode: forwards;
-  animation-delay: 1.7s;
-  opacity: 0;
-  background: linear-gradient(#ff5151 0 0) var(--p, 0)/var(--p, 0) no-repeat;
-  transition: 0.4s, background-position 0s !important;
-}
-.slider-container .slider .slider-item .slider-text .shop-now-button:hover {
-  --p: 100% !important;
-  color: #fff !important;
-}
 
 .sliderActive {
   opacity: 1 !important;

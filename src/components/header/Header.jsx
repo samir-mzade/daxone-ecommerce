@@ -12,7 +12,6 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
     
   const openBurger = () => {
-    console.log("open");
       setIsOpen(true);
   };
 
