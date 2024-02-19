@@ -70,7 +70,7 @@ const Header = () => {
                   </ul>
                 </li>
                 <li className="nav-menu-list-item ">
-                  <a href="shop.html">Shop</a>
+                  <a href="shop">Shop</a>
                   <ul
                     className="home-dropdown d-flex justify-content-between gap-4 fs-6"
                     style={{ left: "-200px", width: " 60vw" }}
