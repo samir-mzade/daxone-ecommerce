@@ -4,8 +4,6 @@ const ShopPage = () => {
   return (
     <>
       
-
-
       <section class="bg-section">
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <h2>Shop Page</h2>
@@ -14,7 +12,7 @@ const ShopPage = () => {
             </div>
         </section>
 
-        <section class="shop-main-section">
+       <section class="shop-main-section">
             <div class="custom-container">
                 <div class="row flex-row-reverse">
                     <div class="col-lg-9">
@@ -348,7 +346,7 @@ const ShopPage = () => {
                                                 <div class="product-icon"><a href="#" title="Compare"><i
                                                             class="fa-solid fa-retweet"></i></a></div>
                                             </div>
-                                            <span class="badge fs-12 position-absolute">Stock <br> Out</span>
+                                            <span class="badge fs-12 position-absolute">Stock <br/> Out</span>
                                         </div>
                                         <div class="product-con">
                                             <p>Chair</p>
@@ -446,7 +444,7 @@ const ShopPage = () => {
                                         class="image-wrap position-relative col-xl-4 col-lg-5 col-md-6 col-sm-6 col-10">
                                         <div class="pro-img">
                                             <a href="#"><img class="w-100"
-                                                    src="assets/images/products/pro-hm1-1.jpg"></a>
+                                                    src="assets/images/products/pro-hm1-1.jpg"/></a>
                                         </div>
                                         <div class="pro-quickview position-absolute">
                                             <a href="#"><i class="fa-solid fa-plus"></i></a>
@@ -869,4 +867,4 @@ const ShopPage = () => {
   )
 }
 
-export default ShopPage
+export {ShopPage}
