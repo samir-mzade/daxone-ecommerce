@@ -22,26 +22,28 @@ const AdvertisementBody = ({ x, updateFunction }) => {
       <tr>
         {x && (
           <>
-            <th>{x.title}</th>
-            <th>{x.description}</th>
-            <th>{x.imgPath}</th>
-            <th>{x.discount}</th>
-            <th>
+            <td>{x.title}</td>
+            <td>{x.description}</td>
+            <td>
+              <img src={x.imgPath} alt="img" width="100px" height="100px" />
+            </td>
+            <td>{x.discount}</td>
+            <td>
               <Link
                 to={`AdvertisementBannerEdit/${x.id}`}
                 className="btn btn-success"
               >
                 Edit
               </Link>
-            </th>
-            <th>
+            </td>
+            <td>
               <button
                 className="btn btn-danger"
                 onClick={() => DeleteClick(x.id)}
               >
                 Delete
               </button>
-            </th>
+            </td>
           </>
         )}
       </tr>

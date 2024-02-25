@@ -7,32 +7,8 @@ const AdvertisementBannerEdit = () => {
   // Get the ID parameter from the URL
   const { id } = useParams();
 
-  // State to manage form data
-  const [formData, setFormData] = useState({
-    companyName: "",
-    entryDate: "",
-    leaveDate: "",
-    description: "",
-  });
-
   const navigate = useNavigate();
-
-  // Function to handle changes in form inputs
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  // Function to handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can add form validation logic here
-    console.log("Form submitted:", formData);
-    // You can also add logic to send the form data to the server
-  };
+  
   const [data, setData] = useState({});
 
   const Title = useRef(null);
@@ -88,6 +64,7 @@ const AdvertisementBannerEdit = () => {
           Title.current.value = jsonData.title;
           Description.current.value = jsonData.description;
           Discount.current.value = jsonData.discount;
+          ImgPath.current.value = jsonData.imgPath;
         } else {
           console.error(
             "Failed to fetch advertisement. Server responded with status:",
@@ -110,7 +87,7 @@ const AdvertisementBannerEdit = () => {
             <div className="card shadow-lg border-0 rounded-lg mt-5">
               <div className="card-header">
                 <h3 className="text-center font-weight-light my-4">
-                  Add Advertisement
+                  Edit Advertisement
                 </h3>
               </div>
               <div className="card-body">

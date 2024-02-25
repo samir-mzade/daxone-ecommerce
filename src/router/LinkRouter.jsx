@@ -8,6 +8,7 @@ import Admin from "../admin/adminPanel/Admin";
 import AdvertisementBanner from "../admin/advertisementBanner/AdvertisementBanner";
 import AdvertisementBannerAdd from "../admin/advertisementBanner/AdvertisementBannerAdd";
 import AdvertisementBannerEdit from "../admin/advertisementBanner/AdvertisementBannerEdit";
+import Crud from "../admin/advertisementBanner/Crud";
 
 const LinkRouter = () => {
   return (
@@ -21,15 +22,7 @@ const LinkRouter = () => {
         <Route index path="/admin" element={<Admin />} />
         <Route
           path="/admin/advertisementBanner"
-          element={
-            <AdvertisementBanner
-              Title={"izzet"}
-              Description={"msfdsnsdfaf"}
-              ImgPath={"mjsjdf"}
-              Discount={"ndasadbsb"}
-              id={1}
-            />
-          }
+          element={<AdvertisementBanner />}
         />
         <Route
           path="/admin/advertisementBanner/AdvertisementBannerAdd"
@@ -39,6 +32,7 @@ const LinkRouter = () => {
           path="/admin/advertisementBanner/AdvertisementBannerEdit/:id"
           element={<AdvertisementBannerEdit />}
         />
+        <Route path="/admin/advertisementBanner/Crud" element={<Crud />} />
       </Route>
     </Routes>
   );

@@ -27,7 +27,7 @@ const Header = () => {
         <div className="body-overlay" id="body-overlay"></div>
       </div>
       {/* Header Area */}
-      <header className="header">
+      <header className="headerMain">
         <nav className="nav" style={{ backgroundColor: "#EEF6FF" }}>
           <div className="inner-container custom-container container d-flex justify-content-between align-items-center">
             <div className="nav-logo">

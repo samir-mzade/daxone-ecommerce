@@ -32,21 +32,21 @@ const AdvertisementBanner = (ArrayBody) => {
   }, [Update]);
 
   return (
-    <div class="container-fluid">
-      <h1 class="h3 mb-2 text-gray-800 mt-4">Advertisement Banner</h1>
+    <div className="container-fluid">
+      <h1 className="h3 mb-2 text-gray-800 mt-4">Advertisement Banner</h1>
 
-      <Link to={"AdvertisementBannerAdd"} class="btn btn-primary">
+      <Link to={"AdvertisementBannerAdd"} className="btn btn-primary">
         Add New
       </Link>
 
-      <div class="card shadow mb-4 mt-3">
-        <div class="card-body">
-          <div class="table-responsive">
+      <div className="card shadow mb-4 mt-3">
+        <div className="card-body">
+          <div className="table-responsive">
             <table
-              class="table table-bordered table-striped "
+              className="table table-bordered table-striped "
               id="dataTable"
               width="100%"
-              cellspacing="0"
+              cellSpacing="0"
             >
               <thead>
                 <tr>
