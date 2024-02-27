@@ -35,7 +35,7 @@ const Header = () => {
             <div className="nav-menu d-none d-sm-none d-md-none d-lg-block ">
               <ul className="nav-menu-list d-flex justify-content-between align-items-center gap-5 m-0">
                 <li className="nav-menu-list-item">
-                  <a href="index.html">Home</a>
+                  <a href="/">Home</a>
                   <ul className="home-dropdown fs-6">
                     <li className="home-dropdown-list-item py-1">
                       <a href="#">Home Version 1</a>
@@ -70,7 +70,7 @@ const Header = () => {
                   </ul>
                 </li>
                 <li className="nav-menu-list-item ">
-                  <a href="shop.html">Shop</a>
+                  <a href="shop">Shop</a>
                   <ul
                     className="home-dropdown d-flex justify-content-between gap-4 fs-6"
                     style={{ left: "-200px", width: " 60vw" }}
@@ -160,19 +160,19 @@ const Header = () => {
                       <a href="#">Cart Page</a>
                     </li>
                     <li className="home-dropdown-list-item py-1">
-                      <a href="checkout.html">Checkout</a>
+                      <a href="#">Checkout</a>
                     </li>
                     <li className="home-dropdown-list-item py-1">
-                      <a href="wishlist.html">Wishlist</a>
+                      <a href="#">Wishlist</a>
                     </li>
                     <li className="home-dropdown-list-item py-1">
                       <a href="#">My Account</a>
                     </li>
                     <li className="home-dropdown-list-item py-1">
-                      <a href="contact.html">Contact Us</a>
+                      <a href="/contact">Contact Us</a>
                     </li>
                     <li className="home-dropdown-list-item py-1">
-                      <a href="login.html">Login/Register</a>
+                      <a href="#">Login/Register</a>
                     </li>
                   </ul>
                 </li>
@@ -194,7 +194,7 @@ const Header = () => {
                   </ul>
                 </li>
                 <li className="nav-menu-list-item">
-                  <a href="contact.html">Contact</a>
+                  <a href="/contact">Contact</a>
                 </li>
               </ul>
             </div>
