@@ -160,7 +160,7 @@ const Header = () => {
                       <a href="#">Cart Page</a>
                     </li>
                     <li className="home-dropdown-list-item py-1">
-                      <a href="#">Checkout</a>
+                      <a href="/checkout">Checkout</a>
                     </li>
                     <li className="home-dropdown-list-item py-1">
                       <a href="#">Wishlist</a>

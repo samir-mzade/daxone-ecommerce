@@ -1,54 +1,77 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './__CheckoutPage.scss'
+import paypal from '../../assets/images/payment.webp'
 
 export const CheckoutPage = () => {
+
+
+
+    const [isOpen , setIsOpen] = useState(false);
+    const [isOpen1 , setIsOpen1] = useState(false);
+
+    const changeAccordion = () => { 
+        if(isOpen){
+            setIsOpen(false);
+        }
+        else{
+            setIsOpen(true);
+        }
+    }
+
+    const changeAccordion1 = () => { 
+        if(isOpen1){
+            setIsOpen1(false);
+        }
+        else{
+            setIsOpen1(true);
+        }
+    }
+
   return (
     <>
-
-
-<section class="bg-section">
-            <div class="d-flex justify-content-center align-items-center flex-column">
+<section className="bg-section">
+            <div className="d-flex justify-content-center align-items-center flex-column">
                 <h2>Checkout Page</h2>
-                <p><a href="index.html">Home</a><span class="ps-2 pe-2 fw-light"><i
-                            class="fa-solid fa-slash fa-rotate-90"></i></span><span class="active">Contact Us</span></p>
+                <p><a href="index.html">Home</a><span className="ps-2 pe-2 fw-light"><i
+                            className="fa-solid fa-slash fa-rotate-90"></i></span><span className="active">Contact Us</span></p>
             </div>
         </section>
-        <section class="checkout-page mt-5">
-            <div class="container">
-                <div class="checkout-accordion1" id="checkout-accordion1">
+        <section className="checkout-page mt-5">
+            <div className="container">
+                <div className="checkout-accordion1" id="checkout-accordion1">
 
-                    <div class="checkout-accordion1-title d-flex align-items-center gap-3">
+                    <div className="checkout-accordion1-title d-flex align-items-center gap-3">
 
-                        <i class="fa-regular fa-circle-check"></i>
-
-                        <p>Returning customer?<span id="checkout-click" class="checkout-click"> Click here to
+                        <i className="fa-regular fa-circle-check"></i>
+                        {/* <div id="burger-menu" className={`burger-menu ${isOpen ? 'burgerActive' : 'burger-menu'}`}></div> */}
+                        <p>Returning customer?<span id="checkout-click" className="checkout-click" onClick={changeAccordion}> Click here to
                                 login</span></p>
                     </div>
 
-                    <div class="checkout-accordion-body  mt-3" id="checkout-accordion-body">
+                    <div className={`checkout-accordion-body  mt-3 ${isOpen ? 'checkout-accordion-body accordionNotActive mt-3' : 'checkout-accordion-body mt-3'}`} id="checkout-accordion-body">
 
                         <p>If you have shopped with us before, please enter your details in the boxes below. If you are
                             a new customer, please proceed to the Billing & Shipping section.</p>
 
-                        <div class="checkout-inputs d-flex justify-content-between align-items-center gap-4 mt-3">
+                        <div className="checkout-inputs d-flex justify-content-between align-items-center gap-4 mt-3">
 
-                            <div class="checkout-inputs-username w-50">
+                            <div className="checkout-inputs-username w-50">
                                 <h5>Username Or Email Address</h5>
-                                <input class="form form-control" type="text"/>
+                                <input className="form form-control" type="text"/>
                             </div>
-                            <div class="checkout-inputs-password w-50">
+                            <div className="checkout-inputs-password w-50">
                                 <h5>Password</h5>
-                                <input class="form form-control" type="text"/>
+                                <input className="form form-control" type="text"/>
                             </div>
 
 
                         </div>
 
-                        <div class="checkout-login d-flex mt-3 gap-4">
+                        <div className="checkout-login d-flex mt-3 gap-4">
 
-                            <button class="btn btn-danger">Login</button>
+                            <button className="btn btn-danger">Login</button>
 
-                            <div class="checkout-login-checkbox d-flex align-items-center gap-2">
+                            <div className="checkout-login-checkbox d-flex align-items-center gap-2">
 
                                 <input type="checkbox"/>
 
@@ -58,17 +81,17 @@ export const CheckoutPage = () => {
 
                         </div>
 
-                        <div class="checkout-social mt-3">
+                        <div className="checkout-social mt-3">
 
                             <p>Lost your password?</p>
 
-                            <p class="mt-3">Login with:</p>
+                            <p className="mt-3">Login with:</p>
 
-                            <div class="checkout-social-buttons mt-3 d-flex gap-3">
+                            <div className="checkout-social-buttons mt-3 d-flex gap-3">
 
-                                <div class="social-button">FACEBOOK</div>
-                                <div class="social-button">TWITTER</div>
-                                <div class="social-button">GOOGLE</div>
+                                <div className="social-button">FACEBOOK</div>
+                                <div className="social-button">TWITTER</div>
+                                <div className="social-button">GOOGLE</div>
 
                             </div>
 
@@ -77,54 +100,54 @@ export const CheckoutPage = () => {
 
                     </div>
                 </div>
-                <div class="checkout-accordion1  mt-3" id="checkout-accordion1">
-                    <div class="checkout-accordion1-title d-flex align-items-center gap-3">
-                        <i class="fa-regular fa-circle-check"></i>
-                        <p>Have a coupon?<span id="checkout-click" class="checkout-click"> Click here to enter your
+                <div className="checkout-accordion1  mt-3" id="checkout-accordion1">
+                    <div className="checkout-accordion1-title d-flex align-items-center gap-3">
+                        <i className="fa-regular fa-circle-check"></i>
+                        <p>Have a coupon?<span id="checkout-click" className="checkout-click" onClick={changeAccordion1}> Click here to enter your
                                 code</span></p>
                     </div>
-                    <div class="checkout-accordion-body mt-3" id="checkout-accordion-body">
-                        <div class="checkout-accordion-coupon d-flex align-items-center gap-2">
-                            <input class="form form-control w-50" type="text" placeholder="Coupon code"/>
-                            <button class="btn">APPLY COUPON</button>
+                    <div className={`checkout-accordion-body  mt-3 ${isOpen1 ? 'checkout-accordion-body accordionNotActive mt-3' : 'checkout-accordion-body mt-3'}`} id="checkout-accordion-body">
+                        <div className="checkout-accordion-coupon d-flex align-items-center gap-2">
+                            <input className="form form-control w-50" type="text" placeholder="Coupon code"/>
+                            <button className="btn">APPLY COUPON</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="checkout-form mt-5">
-            <div class="container">
-                <div class="row">
+        <section className="checkout-form mt-5">
+            <div className="container">
+                <div className="row">
 
-                    <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                    <div className="col-lg-7 col-md-12 col-sm-12 col-12">
 
                         <h5>BILLING DETAILS</h5>
 
-                        <div class="checkout-form-line"></div>
+                        <div className="checkout-form-line"></div>
 
                         <div
-                            class="checkout-form-name d-flex flex-column flex-sm-column flex-md-row flex-lg-row gap-4 mt-3">
+                            className="checkout-form-name d-flex flex-column flex-sm-column flex-md-row flex-lg-row gap-4 mt-3">
 
-                            <div class="checkout-form-input w-100 mt-3">
+                            <div className="checkout-form-input w-100 mt-3">
                                 <p>First Name</p>
-                                <input class="w-100" type="text"/>
+                                <input className="w-100" type="text"/>
                             </div>
 
-                            <div class="checkout-form-input w-100 mt-3">
+                            <div className="checkout-form-input w-100 mt-3">
                                 <p>Last Name</p>
-                                <input class="w-100" type="text"/>
+                                <input className="w-100" type="text"/>
                             </div>
                         </div>
 
 
-                        <div class="checkout-form-input mt-3">
+                        <div className="checkout-form-input mt-3">
                             <p>Company Name</p>
-                            <input class="w-100" type="text"/>
+                            <input className="w-100" type="text"/>
                         </div>
 
-                        <div class="checkout-form-input mt-3">
+                        <div className="checkout-form-input mt-3">
                             <p>Country</p>
-                            <select name="" id="" class="w-100">
+                            <select name="" id="" className="w-100">
                                 <option value="">Select Country:</option>
                                 <option value="">Azerbaijan</option>
                                 <option value="">Turkey</option>
@@ -132,65 +155,65 @@ export const CheckoutPage = () => {
                             </select>
                         </div>
 
-                        <div class="checkout-form-input mt-3">
+                        <div className="checkout-form-input mt-3">
                             <p>Street Address</p>
-                            <input class="w-100 " type="text" placeholder="House Number"/>
-                            <input class="w-100 mt-3" type="text" placeholder="Apartment"/>
+                            <input className="w-100 " type="text" placeholder="House Number"/>
+                            <input className="w-100 mt-3" type="text" placeholder="Apartment"/>
                         </div>
 
-                        <div class="checkout-form-input mt-3">
+                        <div className="checkout-form-input mt-3">
                             <p>State/Country</p>
-                            <input class="w-100 " type="text"/>
+                            <input className="w-100 " type="text"/>
                         </div>
 
-                        <div class="checkout-form-input mt-3">
+                        <div className="checkout-form-input mt-3">
                             <p>PostCode/ZipCode</p>
-                            <input class="w-100 " type="text"/>
+                            <input className="w-100 " type="text"/>
                         </div>
 
-                        <div class="checkout-form-input mt-3">
+                        <div className="checkout-form-input mt-3">
                             <p>Phone</p>
-                            <input class="w-100 " type="text"/>
+                            <input className="w-100 " type="text"/>
                         </div>
 
-                        <div class="checkout-form-input mt-3">
+                        <div className="checkout-form-input mt-3">
                             <p>Email Address</p>
-                            <input class="w-100 " type="text"/>
+                            <input className="w-100 " type="text"/>
                         </div>
 
-                        <div class="checkout-login-checkbox d-flex align-items-center gap-2 mt-3">
+                        <div className="checkout-login-checkbox d-flex align-items-center gap-2 mt-3">
                             <input type="checkbox"/>
                             <p>Create an account</p>
                         </div>
 
                         <textarea style={{border: "none" , backgroundColor: "#E8EFF7"}} rows="6" name="" id="textarea"
-                            class="w-100 p-3 mt-3" placeholder="Your Notes..."></textarea>
+                            className="w-100 p-3 mt-3" placeholder="Your Notes..."></textarea>
 
                     </div>
 
-                    <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                    <div className="col-lg-5 col-md-12 col-sm-12 col-12">
 
-                        <div class="order-checkout p-5">
+                        <div className="order-checkout p-5">
 
 
-                            <div class="order-title">
+                            <div className="order-title">
                                 <h5>Your order</h5>
-                                <div class="order-line"></div>
+                                <div className="order-line"></div>
                             </div>
 
-                            <div class="order-product  mt-5">
+                            <div className="order-product  mt-5">
 
-                                <div class="product-total">
+                                <div className="product-total">
 
                                     <p style={{fontSize:"14px", fontWeight:"bold"}}>PRODUCT</p>
 
                                     <p style={{color: "#FF6541"}}>TOTAL</p>
                                 </div>
 
-                                <div class="product-name">
+                                <div className="product-name">
 
 
-                                    <div class="product-price mt-2">
+                                    <div className="product-price mt-2">
 
                                         <p>Product Name X 1</p>
 
@@ -198,7 +221,7 @@ export const CheckoutPage = () => {
                                     </div>
 
 
-                                    <div class="product-price mt-2">
+                                    <div className="product-price mt-2">
 
                                         <p>Product Name X 1</p>
 
@@ -207,28 +230,28 @@ export const CheckoutPage = () => {
 
                                 </div>
 
-                                <div class="product-total">
+                                <div className="product-total">
 
                                     <p style={{fontSize: "14px", fontWeight:"bold"}}>SUBTOTAL</p>
 
                                     <p style={{color: "#FF6541"}}>$329</p>
                                 </div>
 
-                                <div class="product-total">
+                                <div className="product-total">
 
                                     <p style={{fontSize:"14px", fontWeight:"bold"}}>SHIPPING</p>
 
                                     <p style={{color: "#FF6541"}}>Enter your full address</p>
                                 </div>
 
-                                <div class="product-total">
+                                <div className="product-total">
 
                                     <p style={{fontSize: "14px", fontWeight:"bold"}}>TOTAL</p>
 
                                     <p style={{color: "#FF6541"}}>$273</p>
                                 </div>
 
-                                <div class="checkout-radio d-flex align-items-center gap-2 mt-3">
+                                <div className="checkout-radio d-flex align-items-center gap-2 mt-3">
 
                                     <input type="radio"/>
 
@@ -238,34 +261,34 @@ export const CheckoutPage = () => {
                                 <p style={{fontsize: "12px"}}>Make your payment directly into our bank account. Please use
                                     your Order ID as the payment reference.</p>
 
-                                <div class="checkout-payment">
+                                <div className="checkout-payment">
 
-                                    <div class="checkout-radio d-flex align-items-center gap-2 mt-3">
+                                    <div className="checkout-radio d-flex align-items-center gap-2 mt-3">
 
                                         <input type="radio"/>
 
                                         <p>CHECK PAYMENTS</p>
                                     </div>
 
-                                    <div class="checkout-radio d-flex align-items-center gap-2 mt-3">
+                                    <div className="checkout-radio d-flex align-items-center gap-2 mt-3">
 
                                         <input type="radio"/>
 
                                         <p>CASH ON DELIVERY</p>
                                     </div>
 
-                                    <div class="checkout-radio d-flex align-items-center gap-2 mt-3">
+                                    <div className="checkout-radio d-flex align-items-center gap-2 mt-3">
 
                                         <input type="radio"/>
 
                                         <p>PAYPAL</p>
-                                        <img style={{width: "40%"}} src="assets/images/payment.webp" alt=""/>
+                                        <img style={{width: "40%"}} src={paypal} alt=""/>
                                         <p style={{fontSize: "12px"}}><a style={{textDecoration: "underline" , color: "black"}}
                                                 href="">WHAT IS PAYPAL?</a></p>
                                     </div>
 
 
-                                    <button class="btn btn-form mt-5 checkout-button">
+                                    <button className="btn btn-form mt-5 checkout-button">
                                         PLACE ORDER
                                     </button>
                                 </div>
