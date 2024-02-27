@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AdvertisementBody from "./AdvertisementBody";
-const AdvertisementBanner = (ArrayBody) => {
+const AdvertisementBanner = () => {
   const [data, setData] = useState({});
   const [Update, setUpdate] = useState(0);
 

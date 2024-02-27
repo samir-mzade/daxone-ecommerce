@@ -3,30 +3,24 @@ import { useParams } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 
-const AdvertisementBannerEdit = () => {
+const CategoryEdit = () => {
   // Get the ID parameter from the URL
   const { id } = useParams();
 
   const navigate = useNavigate();
-  
+
   const [data, setData] = useState({});
 
-  const Title = useRef(null);
-  const Discount = useRef(null);
-  const ImgPath = useRef(null);
-  const Description = useRef(null);
+  const Name = useRef(null);
 
   const editHandler = async () => {
     const model = {
-      Title: Title.current.value,
-      Discount: Discount.current.value,
-      ImgPath: ImgPath.current.value,
-      Description: Description.current.value,
+      Name: Name.current.value,
     };
 
     try {
       const response = await fetch(
-        `https://localhost:7046/api/AdvertisementBanner/${id}`,
+        `https://localhost:7046/api/Category/${id}`,
         {
           method: "PUT",
           headers: {
@@ -45,7 +39,7 @@ const AdvertisementBannerEdit = () => {
           response.status
         );
       }
-      navigate("/admin/AdvertisementBanner");
+      navigate("/admin/Category");
     } catch (error) {
       console.error("Error adding advertisement:", error);
     }
@@ -55,16 +49,13 @@ const AdvertisementBannerEdit = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://localhost:7046/api/AdvertisementBanner/${id}`
+          `https://localhost:7046/api/Category/${id}`
         );
 
         if (response.ok) {
           const jsonData = await response.json();
           setData(jsonData);
-          Title.current.value = jsonData.title;
-          Description.current.value = jsonData.description;
-          Discount.current.value = jsonData.discount;
-          ImgPath.current.value = jsonData.imgPath;
+          Name.current.value = jsonData.name;
         } else {
           console.error(
             "Failed to fetch advertisement. Server responded with status:",
@@ -87,60 +78,30 @@ const AdvertisementBannerEdit = () => {
             <div className="card shadow-lg border-0 rounded-lg mt-5">
               <div className="card-header">
                 <h3 className="text-center font-weight-light my-4">
-                  Edit Advertisement
+                  Edit Category
                 </h3>
               </div>
               <div className="card-body">
                 <div className="row mb-3">
                   <div className="col-md-12">
                     <div className="form mb-3 mb-md-3">
-                      <label htmlFor="inputTitle">Title</label>
+                      <label htmlFor="inputTitle">Name</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="title"
-                        placeholder="enter Title"
-                        ref={Title}
+                        id="name"
+                        placeholder="enter Name"
+                        ref={Name}
                       />
-                      <span style={{ color: "red" }}></span>
-                    </div>
-                    <div className="form mb-3 mb-md-3">
-                      <label htmlFor="inputDiscount">Discount </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="discount"
-                        placeholder="enter Discount"
-                        ref={Discount}
-                      />
-                      <span style={{ color: "red" }}></span>
-                    </div>
-                    <div className="form mb-3 mb-md-3">
-                      <label htmlFor="inputLeaveDate">ImgPath</label>
-                      <input
-                        type="file"
-                        className="form-control"
-                        id="imgPath"
-                        placeholder="enter ImgPath"
-                        ref={ImgPath}
-                      />
-                      <span style={{ color: "red" }}></span>
-                    </div>
-                    <div className="form mb-3 mb-md-3">
-                      <label htmlFor="inputDescription">Description </label>
-                      <textarea
-                        type="text"
-                        className="form-control"
-                        id="description"
-                        placeholder="enter Description"
-                        ref={Description}
-                      ></textarea>
                       <span style={{ color: "red" }}></span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 mb-0">
-                  <button onClick={editHandler} className="btn btn-success">
+                  <button
+                    onClick={editHandler}
+                    className="btn btn-success"
+                  >
                     Save
                   </button>
                 </div>
@@ -153,4 +114,4 @@ const AdvertisementBannerEdit = () => {
   );
 };
 
-export default AdvertisementBannerEdit;
+export default CategoryEdit;
