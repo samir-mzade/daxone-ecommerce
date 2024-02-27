@@ -1,4 +1,5 @@
 import React from 'react'
+import './__Home.scss'
 import MainSlider from '../../components/MainSlider/MainSlider'
 import AdvertisementSide from '../../components/AdvertisementSide/AdvertisementSide'
 import ProductsList from '../../components/ProductsList/ProductsList'
@@ -102,8 +103,25 @@ const Home = () => {
     <>
         <MainSlider/>
         <AdvertisementSide/>
+
+        <div className="content-main">
+            <h2 className='content-main-title'>Best Sell</h2>
+            <p className="d-flex col-xl-5 col-lg-6 col-md-7 col-sm-11">Lorem Ipsum is simply dummy text of the
+                printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+            </p>
+        </div>
+
         <ProductsList productsList={productsList.slice(0,4)} bestseller = {"Best Sell"}/>
         <DiscountSide/>
+
+        
+        <div className="content-main">
+            <h2 className='content-main-title'>All Products</h2>
+            <p className="d-flex col-xl-5 col-lg-6 col-md-7 col-sm-11">Lorem Ipsum is simply dummy text of the
+                printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+            </p>
+        </div>
+
         <ProductsList productsList={productsList} bestseller = {"All Products"}/>
     </>
   )
