@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import Home from "../pages/HomePage/Home";
 import ShopPage from "../pages/ShopPage/ShopPage";
+import ContactPage from '../pages/ContactPage/ContactPage'
+import { CheckoutPage } from '../pages/ChekoutPage/CheckoutPage'
 import AdminPanelLayout from "../admin/adminPanelLayout/layout/Layout";
 import Admin from "../admin/adminPanel/Admin";
 import AdvertisementBanner from "../admin/advertisementBanner/AdvertisementBanner";
@@ -18,6 +20,8 @@ const LinkRouter = () => {
       <Route path="/" element={<Layout />}>
         <Route index path="/" element={<Home />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route path='/contact' element={ <ContactPage/>} />
+        <Route path='/checkout' element={ <CheckoutPage/>} />
       </Route>
 
       <Route path="/admin" element={<AdminPanelLayout />}>
@@ -44,6 +48,10 @@ const LinkRouter = () => {
     </Routes>
   );
 };
+  );
+};
+
+export default LinkRouter;
 
 
 export default LinkRouter;
