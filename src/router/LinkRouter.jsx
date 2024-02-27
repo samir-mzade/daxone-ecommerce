@@ -8,7 +8,9 @@ import Admin from "../admin/adminPanel/Admin";
 import AdvertisementBanner from "../admin/advertisementBanner/AdvertisementBanner";
 import AdvertisementBannerAdd from "../admin/advertisementBanner/AdvertisementBannerAdd";
 import AdvertisementBannerEdit from "../admin/advertisementBanner/AdvertisementBannerEdit";
-import Crud from "../admin/advertisementBanner/Crud";
+import Category from "../admin/category/Category";
+import CategoryAdd from "../admin/category/CategoryAdd";
+import CategoryEdit from "../admin/category/CategoryEdit";
 
 const LinkRouter = () => {
   return (
@@ -32,7 +34,12 @@ const LinkRouter = () => {
           path="/admin/advertisementBanner/AdvertisementBannerEdit/:id"
           element={<AdvertisementBannerEdit />}
         />
-        <Route path="/admin/advertisementBanner/Crud" element={<Crud />} />
+        <Route path="/admin/Category" element={<Category />} />
+        <Route path="/admin/category/CategoryAdd" element={<CategoryAdd />} />
+        <Route
+          path="/admin/category/CategoryEdit/:id"
+          element={<CategoryEdit />}
+        />
       </Route>
     </Routes>
   );

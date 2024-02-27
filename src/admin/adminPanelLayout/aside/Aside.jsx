@@ -20,10 +20,9 @@ const Aside = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
-            <i className="fa-solid fa-layer-group pe-3"></i>
-            Category
-          </a>
+          <Link className="nav-link" to="Category">
+            <i className="fa-solid fa-layer-group pe-3"></i>Category
+          </Link>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="index.html">
