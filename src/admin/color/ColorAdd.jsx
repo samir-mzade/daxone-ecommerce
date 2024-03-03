@@ -1,15 +1,15 @@
 import React from "react";
 import AddEntity from "../components/AddEntity";
 
-const CategoryAdd = () => {
-  const properties = ["name"];
+const ColorAdd = () => {
+  const properties = ["name", "colorCode"];
   return (
     <AddEntity
       apiUrl={"https://localhost:7046/api"}
-      entityName={"Category"}
+      entityName={"Color"}
       propertyNames={properties}
     />
   );
 };
 
-export default CategoryAdd;
+export default ColorAdd;

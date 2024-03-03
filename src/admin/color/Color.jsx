@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TableEntity from "../components/TableEntity";
 
-const Category = () => {
+const Color = () => {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(0);
 
@@ -11,7 +11,7 @@ const Category = () => {
 
   const deleteClick = async (id) => {
     try {
-      await fetch(`https://localhost:7046/api/Category/${id}`, {
+      await fetch(`https://localhost:7046/api/Color/${id}`, {
         method: "DELETE",
       });
       updateFunction();
@@ -23,7 +23,7 @@ const Category = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://localhost:7046/api/Category");
+        const response = await fetch("https://localhost:7046/api/Color");
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -35,12 +35,8 @@ const Category = () => {
   }, [update]);
 
   return (
-    <TableEntity
-      data={data}
-      deleteClick={deleteClick}
-      entityName="Category"
-    />
+    <TableEntity data={data} deleteClick={deleteClick} entityName="Color" />
   );
 };
 
-export default Category;
+export default Color;

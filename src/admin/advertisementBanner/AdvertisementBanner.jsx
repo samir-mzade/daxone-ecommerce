@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import AdvertisementBody from "./AdvertisementBody";
+import TableEntity from "../components/TableEntity";
 const AdvertisementBanner = () => {
   const [data, setData] = useState({});
   const [Update, setUpdate] = useState(0);
@@ -9,6 +8,17 @@ const AdvertisementBanner = () => {
   const updateFunction = (x) => {
     setUpdate(Update + 1);
     console.log(x);
+  };
+
+  const deleteClick = async (id) => {
+    try {
+      await fetch(`https://localhost:7046/api/AdvertisementBanner/${id}`, {
+        method: "DELETE",
+      });
+      updateFunction();
+    } catch (error) {
+      console.error("Error deleting data:", error);
+    }
   };
 
   useEffect(() => {
@@ -32,43 +42,11 @@ const AdvertisementBanner = () => {
   }, [Update]);
 
   return (
-    <div className="container-fluid">
-      <h1 className="h3 mb-2 text-gray-800 mt-4">Advertisement Banner</h1>
-
-      <Link to={"AdvertisementBannerAdd"} className="btn btn-primary">
-        Add New
-      </Link>
-
-      <div className="card shadow mb-4 mt-3">
-        <div className="card-body">
-          <div className="table-responsive">
-            <table
-              className="table table-bordered table-striped "
-              id="dataTable"
-              width="100%"
-              cellSpacing="0"
-            >
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>ImgPath</th>
-                  <th>Discount</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              {data.length > 0 &&
-                data.map((x) => {
-                  return (
-                    <AdvertisementBody x={x} updateFunction={updateFunction} />
-                  );
-                })}
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+     <TableEntity
+      data={data}
+      deleteClick={deleteClick}
+      entityName="AdvertisementBanner"
+    />
   );
 };
 

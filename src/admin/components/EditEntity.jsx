@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-
 import { useNavigate } from "react-router-dom";
 
-const CategoryEdit = () => {
+const EditEntity = ({apiUrl, entityName, propertyNames}) => {
   // Get the ID parameter from the URL
   const { id } = useParams();
 
@@ -20,7 +19,7 @@ const CategoryEdit = () => {
 
     try {
       const response = await fetch(
-        `https://localhost:7046/api/Category/${id}`,
+        `${apiUrl}/${entityName}/${id}`,
         {
           method: "PUT",
           headers: {
@@ -49,7 +48,7 @@ const CategoryEdit = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://localhost:7046/api/Category/${id}`
+          `${apiUrl}/${id}`
         );
 
         if (response.ok) {
@@ -111,4 +110,4 @@ const CategoryEdit = () => {
   );
 };
 
-export default CategoryEdit;
+export default EditEntity;
