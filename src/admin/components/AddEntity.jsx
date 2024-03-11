@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { apiUrl } from "../../assets/constants/ApiUrl";
 
-const AddEntity = ({ apiUrl, entityName, propertyNames }) => {
+const AddEntity = ({ entityName, propertyNames }) => {
   const navigate = useNavigate();
 
   const initialFormData = propertyNames.reduce((acc, propertyName) => {
@@ -14,28 +15,50 @@ const AddEntity = ({ apiUrl, entityName, propertyNames }) => {
   const [validationErrors, setValidationErrors] = useState({});
 
   const handleInput = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prevValues) => ({
+      ...prevValues,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(`${apiUrl}/${entityName}`, formData)
-      .then(() => {
-        navigate(`/admin/${entityName}`);
-      })
-      .catch((err) => {
-        if (err.response.data && err.response.status === 400) {
-          setValidationErrors(err.response.data.errors);
-        } else {
-          console.error("Error:", err.message);
-        }
-      });
-  };
 
-  useEffect(() => {
-    console.log(validationErrors); // Log validationErrors when it changes
-  }, [validationErrors]);
+    try {
+      const response = await fetch(`${apiUrl}/${entityName}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        const res = await response.json();
+        if (!res.success) {
+          const updatedErrorMessages = {};
+          propertyNames.forEach((prop) => {
+            const dataIndex = res.data.indexOf(prop);
+            if (dataIndex !== -1) {
+              updatedErrorMessages[prop] = res.messages[dataIndex];
+            } else {
+              updatedErrorMessages[prop] = "";
+            }
+          });
+          setValidationErrors((prevValues) => ({
+            ...prevValues,
+            ...updatedErrorMessages,
+          }));
+        } else {
+          navigate(`/admin/${entityName}`);
+          console.log("Data added successfully");
+        }
+      } else {
+        console.error("Error adding data:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error adding data:", error);
+    }
+  };
 
   return (
     <>
@@ -45,7 +68,7 @@ const AddEntity = ({ apiUrl, entityName, propertyNames }) => {
             <div className="card shadow-lg border-0 rounded-lg mt-5">
               <div className="card-header">
                 <h3 className="text-center font-weight-light my-4">
-                  {`Add${entityName}`}
+                  {`Add ${entityName}`}
                 </h3>
               </div>
               <div className="card-body">
@@ -54,29 +77,37 @@ const AddEntity = ({ apiUrl, entityName, propertyNames }) => {
                     <div className="col-md-12">
                       {propertyNames.map((propertyName) => (
                         <div className="form mb-3 mb-md-3" key={propertyName}>
-                          <label htmlFor={propertyName}>
-                            {propertyName.charAt(0).toUpperCase() +
-                              propertyName.slice(1)}
-                          </label>
-                          {propertyName === "imgPath" ? (
+                          <label htmlFor={propertyName}>{propertyName}</label>
+                          {propertyName === "ImgPath" ? (
                             <input
                               type="file"
                               id={propertyName}
                               name={propertyName}
-                              value={formData[propertyName]}
+                              value={
+                                formData[
+                                  propertyName.charAt(0).toLowerCase() +
+                                    propertyName.slice(1)
+                                ]
+                              }
                               onChange={handleInput}
                               className="form-control"
                               placeholder={`enter ${propertyName}`}
                             />
-                          ) : propertyName === "discount" ||
-                            propertyName === "stockCount" ||
-                            propertyName === "price" ||
-                            propertyName === "salePrice" ? (
+                          ) : propertyName === "Discount" ||
+                            propertyName === "StockCount" ||
+                            propertyName === "Price" ||
+                            propertyName === "SalePrice" ||
+                            propertyName === "CategoryID" ? (
                             <input
                               type="number"
                               id={propertyName}
                               name={propertyName}
-                              value={formData[propertyName]}
+                              value={
+                                formData[
+                                  propertyName.charAt(0).toLowerCase() +
+                                    propertyName.slice(1)
+                                ]
+                              }
                               onChange={handleInput}
                               className="form-control"
                               placeholder={`enter ${propertyName}`}
@@ -86,17 +117,20 @@ const AddEntity = ({ apiUrl, entityName, propertyNames }) => {
                               type="text"
                               id={propertyName}
                               name={propertyName}
-                              value={formData[propertyName]}
+                              value={
+                                formData[
+                                  propertyName.charAt(0).toLowerCase() +
+                                    propertyName.slice(1)
+                                ]
+                              }
                               onChange={handleInput}
                               className="form-control"
                               placeholder={`enter ${propertyName}`}
                             />
                           )}
-                          {validationErrors[propertyName] && (
-                            <span style={{ color: "red" }}>
-                              {validationErrors[propertyName]}
-                            </span>
-                          )}
+                          <span style={{ color: "red" }}>
+                            {validationErrors[propertyName]}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -105,6 +139,12 @@ const AddEntity = ({ apiUrl, entityName, propertyNames }) => {
                     <button className="btn btn-success" type="submit">
                       Save
                     </button>
+                    <Link
+                      to={`/admin/${entityName}`}
+                      className="btn btn-danger ms-3"
+                    >
+                      Cancel
+                    </Link>
                   </div>
                 </form>
               </div>

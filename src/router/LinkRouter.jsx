@@ -19,6 +19,18 @@ import ColorEdit from "../admin/color/ColorEdit";
 import Product from "../admin/product/Product";
 import ProductAdd from "../admin/product/ProductAdd";
 import ProductEdit from "../admin/product/ProductEdit";
+import ProductStatus from "../admin/productStatus/ProductStatus";
+import ProductStatusAdd from "../admin/productStatus/ProductStatusAdd";
+import ProductStatusEdit from "../admin/productStatus/ProductStatusEdit";
+import SeasonDiscount from "../admin/seasonDiscount/SeasonDiscount";
+import SeasonDiscountAdd from "../admin/seasonDiscount/SeasonDiscountAdd";
+import SeasonDiscountEdit from "../admin/seasonDiscount/SeasonDiscountEdit";
+import Size from "../admin/size/Size";
+import SizeAdd from "../admin/size/SizeAdd";
+import SizeEdit from "../admin/size/SizeEdit";
+import SubCategory from "../admin/subCategory/SubCategory";
+import SubCategoryAdd from "../admin/subCategory/SubCategoryAdd";
+import SubCategoryEdit from "../admin/subCategory/SubCategoryEdit";
 
 const LinkRouter = () => {
   return (
@@ -50,11 +62,36 @@ const LinkRouter = () => {
 
         <Route path="/admin/Color" element={<Color />} />
         <Route path="/admin/ColorAdd" element={<ColorAdd />} />
-        <Route path="/admin/ColorEdit" element={<ColorEdit />} />
+        <Route path="/admin/ColorEdit/:id" element={<ColorEdit />} />
 
         <Route path="/admin/Product" element={<Product />} />
         <Route path="/admin/ProductAdd" element={<ProductAdd />} />
-        <Route path="/admin/ProductEdit" element={<ProductEdit />} />
+        <Route path="/admin/ProductEdit/:id" element={<ProductEdit />} />
+
+        <Route path="/admin/ProductStatus" element={<ProductStatus />} />
+        <Route path="/admin/ProductStatusAdd" element={<ProductStatusAdd />} />
+        <Route
+          path="/admin/ProductStatusEdit/:id"
+          element={<ProductStatusEdit />}
+        />
+
+        <Route path="/admin/SeasonDiscount" element={<SeasonDiscount />} />
+        <Route
+          path="/admin/SeasonDiscountAdd"
+          element={<SeasonDiscountAdd />}
+        />
+        <Route
+          path="/admin/SeasonDiscountEdit/:id"
+          element={<SeasonDiscountEdit />}
+        />
+
+        <Route path="/admin/Size" element={<Size />} />
+        <Route path="/admin/SizeAdd" element={<SizeAdd />} />
+        <Route path="/admin/SizeEdit/:id" element={<SizeEdit />} />
+
+        <Route path="/admin/SubCategory" element={<SubCategory />} />
+        <Route path="/admin/SubCategoryAdd" element={<SubCategoryAdd />} />
+        <Route path="/admin/SubCategoryEdit/:id" element={<SubCategoryEdit />} />
       </Route>
     </Routes>
   );

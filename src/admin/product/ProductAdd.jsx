@@ -3,23 +3,17 @@ import AddEntity from "../components/AddEntity";
 
 const ProductAdd = () => {
   const properties = [
-    "name",
-    "categoryID",
-    "isSale",
-    "price",
-    "salePrice",
-    "imgPath",
-    "model",
-    "stockCount",
-    "description",
+    "Name",
+    "CategoryID",
+    "IsSale",
+    "Price",
+    "SalePrice",
+    "ImgPath",
+    "Model",
+    "StockCount",
+    "Description",
   ];
-  return (
-    <AddEntity
-      apiUrl={"https://localhost:7046/api"}
-      entityName={"Product"}
-      propertyNames={properties}
-    />
-  );
+  return <AddEntity entityName={"Product"} propertyNames={properties} />;
 };
 
 export default ProductAdd;
