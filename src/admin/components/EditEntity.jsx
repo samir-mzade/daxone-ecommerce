@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { apiUrl } from "../../assets/constants/ApiUrl";
+import axios from "axios";
 
 const EditEntity = ({ entityName, propertyNames }) => {
   // Get the ID parameter from the URL
@@ -10,6 +11,22 @@ const EditEntity = ({ entityName, propertyNames }) => {
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [validationErrors, setValidationErrors] = useState({});
+  // const [selectedCategory, setSelectedCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    // Fetch categories when the component mounts
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/Category`);
+      setCategories(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
 
   const editHandler = async (e) => {
     e.preventDefault();
@@ -91,8 +108,10 @@ const EditEntity = ({ entityName, propertyNames }) => {
                     {propertyNames.map((propertyName) => (
                       <div className="form mb-3 mb-md-3" key={propertyName}>
                         <label htmlFor={propertyName}>
-                          {propertyName.charAt(0).toUpperCase() +
-                            propertyName.slice(1)}
+                          {propertyName === "categoryID"
+                            ? "Category"
+                            : propertyName.charAt(0).toUpperCase() +
+                              propertyName.slice(1)}
                         </label>
                         {propertyName === "imgPath" ? (
                           <input
@@ -111,8 +130,7 @@ const EditEntity = ({ entityName, propertyNames }) => {
                         ) : propertyName === "discount" ||
                           propertyName === "stockCount" ||
                           propertyName === "price" ||
-                          propertyName === "salePrice" ||
-                          propertyName === "categoryID" ? (
+                          propertyName === "salePrice" ? (
                           <input
                             type="number"
                             id={propertyName}
@@ -127,6 +145,21 @@ const EditEntity = ({ entityName, propertyNames }) => {
                               })
                             }
                           />
+                        ) : propertyName === "categoryID" ? (
+                          <select
+                            className="ms-3 p-2 rounded border border-secondary"
+                            value={data.categoryID}
+                            onChange={(e) =>
+                              setData({ ...data, categoryID: e.target.value })
+                            }
+                          >
+                            <option value="">Select a category</option>
+                            {categories.map((category) => (
+                              <option key={category.id} value={category.id}>
+                                {category.name}
+                              </option>
+                            ))}
+                          </select>
                         ) : (
                           <input
                             type="text"

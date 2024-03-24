@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { apiUrl } from "../../assets/constants/ApiUrl";
+import axios from "axios";
 
 const AddEntity = ({ entityName, propertyNames }) => {
   const navigate = useNavigate();
@@ -13,6 +14,22 @@ const AddEntity = ({ entityName, propertyNames }) => {
 
   const [formData, setFormData] = useState(initialFormData);
   const [validationErrors, setValidationErrors] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    // Fetch categories when the component mounts
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/Category`);
+      setCategories(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
 
   const handleInput = (e) => {
     setFormData((prevValues) => ({
@@ -25,12 +42,14 @@ const AddEntity = ({ entityName, propertyNames }) => {
     e.preventDefault();
 
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch(`${apiUrl}/${entityName}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        Authorization: `Bearer ${token}`,
+        body: JSON.stringify({ ...formData, CategoryID: selectedCategory }), // Include selected category ID in formData
       });
       if (response.ok) {
         const res = await response.json();
@@ -77,7 +96,11 @@ const AddEntity = ({ entityName, propertyNames }) => {
                     <div className="col-md-12">
                       {propertyNames.map((propertyName) => (
                         <div className="form mb-3 mb-md-3" key={propertyName}>
-                          <label htmlFor={propertyName}>{propertyName}</label>
+                          <label htmlFor={propertyName}>
+                            {propertyName === "CategoryID"
+                              ? "Category"
+                              : propertyName}
+                          </label>
                           {propertyName === "ImgPath" ? (
                             <input
                               type="file"
@@ -96,8 +119,7 @@ const AddEntity = ({ entityName, propertyNames }) => {
                           ) : propertyName === "Discount" ||
                             propertyName === "StockCount" ||
                             propertyName === "Price" ||
-                            propertyName === "SalePrice" ||
-                            propertyName === "CategoryID" ? (
+                            propertyName === "SalePrice" ? (
                             <input
                               type="number"
                               id={propertyName}
@@ -112,6 +134,21 @@ const AddEntity = ({ entityName, propertyNames }) => {
                               className="form-control"
                               placeholder={`enter ${propertyName}`}
                             />
+                          ) : propertyName === "CategoryID" ? (
+                            <select
+                              className="ms-3 p-2 rounded border border-secondary"
+                              value={selectedCategory}
+                              onChange={(e) =>
+                                setSelectedCategory(e.target.value)
+                              }
+                            >
+                              <option value="">Select a category</option>
+                              {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                  {category.name}
+                                </option>
+                              ))}
+                            </select>
                           ) : (
                             <input
                               type="text"

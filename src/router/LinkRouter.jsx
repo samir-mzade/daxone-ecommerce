@@ -4,7 +4,9 @@ import Layout from "../components/layout/Layout";
 import Home from "../pages/HomePage/Home";
 import ShopPage from "../pages/ShopPage/ShopPage";
 import ContactPage from "../pages/ContactPage/ContactPage";
-import { CheckoutPage } from "../pages/ChekoutPage/CheckoutPage";
+import {CheckoutPage} from "../pages/ChekoutPage/CheckoutPage";
+import Login from "../pages/LoginAndRegister/Login";
+import Register from "../pages/LoginAndRegister/Register";
 import AdminPanelLayout from "../admin/adminPanelLayout/layout/Layout";
 import Admin from "../admin/adminPanel/Admin";
 import AdvertisementBanner from "../admin/advertisementBanner/AdvertisementBanner";
@@ -35,11 +37,13 @@ import SubCategoryEdit from "../admin/subCategory/SubCategoryEdit";
 const LinkRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index path="/" element={<Home />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="/" element={<Home />} />
+      <Route path="" element={<Layout />}>
+        <Route path="shop" element={<ShopPage />} />
+        <Route path="contact" element={<ContactPage />} />
+        <Route path="checkout" element={<CheckoutPage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Route>
 
       <Route path="/admin" element={<AdminPanelLayout />}>
@@ -91,7 +95,10 @@ const LinkRouter = () => {
 
         <Route path="/admin/SubCategory" element={<SubCategory />} />
         <Route path="/admin/SubCategoryAdd" element={<SubCategoryAdd />} />
-        <Route path="/admin/SubCategoryEdit/:id" element={<SubCategoryEdit />} />
+        <Route
+          path="/admin/SubCategoryEdit/:id"
+          element={<SubCategoryEdit />}
+        />
       </Route>
     </Routes>
   );

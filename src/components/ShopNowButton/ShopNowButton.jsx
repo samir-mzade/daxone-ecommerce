@@ -1,5 +1,4 @@
-import React from 'react'
-import './__ShopNowButton.scss'
+import React from 'react';
 
 const ShopNowButton = ({idx, index}) => {
   return (
