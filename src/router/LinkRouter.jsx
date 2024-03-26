@@ -41,9 +41,6 @@ const LinkRouter = () => {
     </Routes>
   );
 };
-  );
-};
 
-export default LinkRouter;
 
 export default LinkRouter;
