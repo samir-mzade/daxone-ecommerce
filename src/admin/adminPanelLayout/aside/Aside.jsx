@@ -20,46 +20,39 @@ const Aside = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
-            <i className="fa-solid fa-layer-group pe-3"></i>
-            Category
-          </a>
+          <Link className="nav-link" to="Category">
+            <i className="fa-solid fa-layer-group pe-3"></i>Category
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
-            <i className="fa-solid fa-palette pe-3"></i>
-            Color
-          </a>
+          <Link className="nav-link" to="Color">
+            <i className="fa-solid fa-palette pe-3"></i>Color
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
-            <i className="fa-solid fa-chair pe-3"></i>
-            Product
-          </a>
+          <Link className="nav-link" to="Product">
+            <i className="fa-solid fa-chair pe-3"></i>Product
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
-            <i className="fa-solid fa-car-battery pe-3"></i>
-            ProductStatus
-          </a>
+          <Link className="nav-link" to="ProductStatus">
+            <i className="fa-solid fa-car-battery pe-3"></i>ProductStatus
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
-            <i className="fa-solid fa-tags pe-3"></i>
-            SeasonDiscount
-          </a>
+          <Link className="nav-link" to="SeasonDiscount">
+            <i className="fa-solid fa-tags pe-3"></i>SeasonDiscount
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
-            <i className="fa-solid fa-expand pe-3"></i>
-            Size
-          </a>
+          <Link className="nav-link" to="Size">
+            <i className="fa-solid fa-expand pe-3"></i>Size
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
-            <i className="fa-solid fa-sitemap pe-3"></i>
-            SubCategory
-          </a>
+          <Link className="nav-link" to="SubCategory">
+            <i className="fa-solid fa-sitemap pe-3"></i>SubCategory
+          </Link>
         </li>
       </ul>
       <button

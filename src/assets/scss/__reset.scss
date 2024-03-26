@@ -1,8 +1,8 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 // @font-face {
@@ -18,16 +18,25 @@
 ol,
 ul,
 li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 a {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 p,
 h2 {
-    margin: 0;
+  margin: 0;
+}
+
+.custom-container {
+  width: 100%;
+  padding-right: 24px;
+  padding-left: 24px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px;
 }

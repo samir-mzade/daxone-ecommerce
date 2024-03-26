@@ -2,7 +2,7 @@ import React from 'react'
 
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div className='fs-2 text-center pt-1'>Welcome to Admin Panel</div>
   )
 }
 

@@ -1,7 +1,6 @@
-import React from 'react'
-import './__DiscountSide.scss'
-import {ShopNowButton} from '../ShopNowButton/ShopNowButton'
-import banner from '../../assets/images/banner/banner-1.jpg'
+import React from 'react';
+import { ShopNowButton } from '../ShopNowButton/ShopNowButton';
+import banner from '../../assets/images/banner/banner-1.jpg';
 
 
 const DiscountSide = () => {
@@ -10,7 +9,7 @@ const DiscountSide = () => {
   return (
     <>
         <section className="discount-section mt-5">
-            <div className="container">
+            <div className="custom-container">
                 <div className="discount-area row align-items-center">
                     <div className="discount-img col-lg-6 col-md-5 col-sm-10 col-10">
                         <a href="#">

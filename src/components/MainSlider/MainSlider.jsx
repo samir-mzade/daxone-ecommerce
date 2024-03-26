@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import './__MainSlider.scss'
-import chair from '../../assets/images/chair.webp'
-import chair2 from '../../assets/images/chair2.webp'
-import { ShopNowButton } from '../ShopNowButton/ShopNowButton'
+import React, { useState } from 'react';
+import chair from '../../assets/images/chair.webp';
+import chair2 from '../../assets/images/chair2.webp';
+import { ShopNowButton } from '../ShopNowButton/ShopNowButton';
 
 
 
