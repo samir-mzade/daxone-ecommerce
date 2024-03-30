@@ -3,12 +3,10 @@ import ProductsList from '../../components/ProductsList/ProductsList';
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import chair from '../../assets/images/chair.webp';
 import chair2 from '../../assets/images/chair2.webp';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import { getAllData } from '../../assets/data/dataFetch';
 
-=======
->>>>>>> 04c486c32aa03848d0ebfc8e92e8a47520d445eb
+
 
 const ShopPage = () => {
   // const [categories, setCategories] = useState([])
