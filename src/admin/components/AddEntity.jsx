@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { apiUrl } from "../../assets/constants/ApiUrl";
+import { token } from "../../assets/constants/Token";
 import axios from "axios";
 
 const AddEntity = ({ entityName, propertyNames }) => {
@@ -31,51 +32,87 @@ const AddEntity = ({ entityName, propertyNames }) => {
     }
   };
 
-  const handleInput = (e) => {
-    setFormData((prevValues) => ({
-      ...prevValues,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const imageExistence = Object.keys(formData).some((key) =>
+    key.toLowerCase().includes("imgpath")
+  );
+
+  // const handleInputChange = (e) => {
+  //   setFormData((prevValues) => ({
+  //     ...prevValues,
+  //     [e.target.name]: e.target.value,
+  //   }));
+  // };
+
+   const handleInput = (property, value) => {
+     setFormData((prevValues) => ({ ...prevValues, [property]: value }));
+     console.log(formData);
+   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const token = localStorage.getItem("token");
-      const response = await fetch(`${apiUrl}/${entityName}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        Authorization: `Bearer ${token}`,
-        body: JSON.stringify({ ...formData, CategoryID: selectedCategory }), // Include selected category ID in formData
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    if (!imageExistence) {
+      headers["Content-Type"] = "application/json";
+    }
+
+    if (imageExistence) {
+      var data = new FormData();
+      console.log(formData);
+      Object.keys(formData).forEach((prop) => {
+        if (prop === "ImgPath") {
+          data.append("Image", formData["ImgPath"]);
+          data.append("ImgPath", "erestun");
+        } else {
+          data.append(prop, `${formData[prop]}`);
+        }
       });
-      if (response.ok) {
-        const res = await response.json();
-        if (!res.success) {
-          const updatedErrorMessages = {};
-          propertyNames.forEach((prop) => {
+      for (var pair of data.entries()) {
+        console.log(pair[0] + "," + pair[1]);
+      }
+    }
+
+    const response = await fetch(`${apiUrl}/${entityName}`, {
+      method: "POST",
+      headers,
+      body: imageExistence
+        ? data
+        : JSON.stringify({ ...formData, CategoryID: selectedCategory }),
+    });
+
+    if (response.ok) {
+      const res = await response.json();
+      if (!res.success) {
+        const updatedErrorMessages = {};
+        propertyNames.forEach((prop) => {
+          if (prop === "ImgPath") {
+            const dataIndex = res.data.indexOf("ImgPath");
+            if (dataIndex !== -1) {
+              updatedErrorMessages[prop] = res.messages[dataIndex];
+            }
+          } else {
             const dataIndex = res.data.indexOf(prop);
             if (dataIndex !== -1) {
               updatedErrorMessages[prop] = res.messages[dataIndex];
             } else {
               updatedErrorMessages[prop] = "";
             }
-          });
-          setValidationErrors((prevValues) => ({
-            ...prevValues,
-            ...updatedErrorMessages,
-          }));
-        } else {
-          navigate(`/admin/${entityName}`);
-          console.log("Data added successfully");
-        }
+          }
+        });
+
+        setValidationErrors((prevValues) => ({
+          ...prevValues,
+          ...updatedErrorMessages,
+        }));
       } else {
-        console.error("Error adding data:", response.statusText);
+        navigate(`/admin/${entityName}`);
+        console.log("Data added successfully");
       }
-    } catch (error) {
-      console.error("Error adding data:", error);
+    } else {
+      console.error("Error adding data:", response.statusText);
     }
   };
 
@@ -105,14 +142,9 @@ const AddEntity = ({ entityName, propertyNames }) => {
                             <input
                               type="file"
                               id={propertyName}
-                              name={propertyName}
-                              value={
-                                formData[
-                                  propertyName.charAt(0).toLowerCase() +
-                                    propertyName.slice(1)
-                                ]
+                              onChange={(e) =>
+                                handleInput(propertyName, e.target.files[0])
                               }
-                              onChange={handleInput}
                               className="form-control"
                               placeholder={`enter ${propertyName}`}
                             />
@@ -123,14 +155,9 @@ const AddEntity = ({ entityName, propertyNames }) => {
                             <input
                               type="number"
                               id={propertyName}
-                              name={propertyName}
-                              value={
-                                formData[
-                                  propertyName.charAt(0).toLowerCase() +
-                                    propertyName.slice(1)
-                                ]
+                              onChange={(e) =>
+                                handleInput(propertyName, e.target.value)
                               }
-                              onChange={handleInput}
                               className="form-control"
                               placeholder={`enter ${propertyName}`}
                             />
@@ -153,14 +180,9 @@ const AddEntity = ({ entityName, propertyNames }) => {
                             <input
                               type="text"
                               id={propertyName}
-                              name={propertyName}
-                              value={
-                                formData[
-                                  propertyName.charAt(0).toLowerCase() +
-                                    propertyName.slice(1)
-                                ]
+                              onChange={(e) =>
+                                handleInput(propertyName, e.target.value)
                               }
-                              onChange={handleInput}
                               className="form-control"
                               placeholder={`enter ${propertyName}`}
                             />

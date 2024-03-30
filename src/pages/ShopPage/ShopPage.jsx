@@ -1,8 +1,8 @@
 import React from 'react';
 import ProductsList from '../../components/ProductsList/ProductsList';
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import chair from '../../assets/images/chair.webp';
 import chair2 from '../../assets/images/chair2.webp';
-import { Link } from 'react-router-dom';
 
 const ShopPage = () => {
 
@@ -93,18 +93,7 @@ const ShopPage = () => {
 
   return (
     <>
-      <section className="bg-section">
-        <div className="d-flex justify-content-center align-items-center flex-column">
-          <h2>Shop Page</h2>
-          <p>
-            <Link to={"/"}>Home</Link>
-            <span className="ps-2 pe-2 fw-light">
-              <i className="fa-solid fa-slash fa-rotate-90"></i>
-            </span>
-            <span className="active">Shop</span>
-          </p>
-        </div>
-      </section>
+      <Breadcrumb pageTitle={"Shop"} />
 
       <section className="shop-main-section">
         <div className="custom-container">
