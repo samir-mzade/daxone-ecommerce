@@ -5,8 +5,7 @@ import Home from "../pages/HomePage/Home";
 import ShopPage from "../pages/ShopPage/ShopPage";
 import ContactPage from "../pages/ContactPage/ContactPage";
 import {CheckoutPage} from "../pages/ChekoutPage/CheckoutPage";
-import Login from "../pages/LoginAndRegister/Login";
-import Register from "../pages/LoginAndRegister/Register";
+import LoginAndRegister from "../pages/LoginAndRegister/LoginAndRegister";
 import AdminPanelLayout from "../admin/adminPanelLayout/layout/Layout";
 import Admin from "../admin/adminPanel/Admin";
 import AdvertisementBanner from "../admin/advertisementBanner/AdvertisementBanner";
@@ -46,8 +45,7 @@ const LinkRouter = () => {
         <Route path="shop" element={<ShopPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="checkout" element={<CheckoutPage />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route path="loginAndRegister" element={<LoginAndRegister />} />
       </Route>
 
       <Route path="/admin" element={<AdminPanelLayout />}>

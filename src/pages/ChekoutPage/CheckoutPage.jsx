@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import paypal from "../../assets/images/payment.webp";
-import { Link } from "react-router-dom";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 export const CheckoutPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,18 +24,8 @@ export const CheckoutPage = () => {
 
   return (
     <>
-      <section className="bg-section">
-        <div className="d-flex justify-content-center align-items-center flex-column">
-          <h2>Checkout Page</h2>
-          <p>
-            <Link to={"/"}>Home</Link>
-            <span className="ps-2 pe-2 fw-light">
-              <i className="fa-solid fa-slash fa-rotate-90"></i>
-            </span>
-            <span className="active">Checkout</span>
-          </p>
-        </div>
-      </section>
+      <Breadcrumb pageTitle={"Checkout"} />
+
       <section className="checkout-page mt-5">
         <div className="container">
           <div className="checkout-accordion1" id="checkout-accordion1">

@@ -30,7 +30,7 @@ const Login = () => {
         window.location.reload();
       }
     } catch (error) {
-      console.log("qaqa nagarirsan");
+      console.log("Invalid username or password");
     }
   };
 

@@ -1,27 +1,42 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../assets/images/logo-1.webp";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu.jsx";
 import { Link } from "react-router-dom";
 
-
-
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const jwt = localStorage.getItem("token");
 
-    const [isOpen, setIsOpen] = useState(false);
-    const jwt = localStorage.getItem("token");
-      
-    const openBurger = () => {
-        setIsOpen(true);
+  const openBurger = () => {
+    setIsOpen(true);
+  };
+
+  const closeBurger = () => {
+    setIsOpen(false);
+  };
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
+  //sticky header
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const headerHeight =
+        document.querySelector(".sticky-header").offsetHeight;
+      const offset = window.scrollY;
+      setIsSticky(offset > headerHeight);
     };
 
-    const closeBurger = () => {
-        setIsOpen(false);
-    };
+    window.addEventListener("scroll", handleScroll);
 
-    const handleLogOut = () => {
-      localStorage.removeItem("token");
-      window.location.reload();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
 
   return (
     <>
@@ -29,8 +44,8 @@ const Header = () => {
         <div className="body-overlay" id="body-overlay"></div>
       </div>
       {/* Header Area */}
-      <header className="headerMain">
-        <nav className="nav" style={{ backgroundColor: "#EEF6FF" }}>
+      <header className={`sticky-header ${isSticky ? "sticky" : ""}`}>
+        <nav className="nav">
           <div className="inner-container custom-container container d-flex justify-content-between align-items-center">
             <div className="nav-logo">
               <img src={logo} alt="" />
@@ -175,15 +190,12 @@ const Header = () => {
                       <Link to={"contact"}>Contact Us</Link>
                     </li>
                     <li className="home-dropdown-list-item py-1">
-                      {/* <a href="#">Login/Register</a> */}
                       {!jwt ? (
                         <div class="d-flex flex-column">
-                          <Link to={"login"}>Login</Link>
-                          <Link to={"register"}>Sign up</Link>
+                          <Link to={"loginAndRegister"}>Login/Register</Link>
                         </div>
                       ) : (
                         <div class="d-flex flex-column">
-                          <Link to={"/"}>Account Settings</Link>
                           <Link to={"/"} onClick={handleLogOut}>
                             Log Out
                           </Link>
@@ -221,7 +233,7 @@ const Header = () => {
               <h5 id="items-count" className="m-0">
                 0 Items
               </h5>
-              <i className="fa-solid fa-magnifying-glass fs-4 d-none d-sm-none d-md-none d-lg-block"></i>
+              <i className="fa-solid fa-magnifying-glass fa-rotate-90 fs-5 d-none d-sm-none d-md-none d-lg-block"></i>
               <i
                 id="burger-menu-icon"
                 onClick={openBurger}

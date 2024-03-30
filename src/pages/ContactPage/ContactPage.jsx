@@ -1,21 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 const ContactPage = () => {
   return (
     <>
-      <section className="bg-section">
-        <div className="d-flex justify-content-center align-items-center flex-column">
-          <h2>Contact Page</h2>
-          <p>
-            <Link to={"/"}>Home</Link>
-            <span className="ps-2 pe-2 fw-light">
-              <i className="fa-solid fa-slash fa-rotate-90"></i>
-            </span>
-            <span className="active">Contact Us</span>
-          </p>
-        </div>
-      </section>
+      <Breadcrumb pageTitle={"Contact"} />
 
       <section className="contact-info-section">
         <div className="custom-container">
