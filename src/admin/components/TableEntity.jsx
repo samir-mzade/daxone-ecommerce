@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { apiUrl } from "../../assets/constants/ApiUrl";
+import { token } from "../../assets/data/dataFetch";
 
 const TableEntity = ({ entityName, propertyNames }) => {
   const [data, setData] = useState([]);
@@ -11,7 +12,11 @@ const TableEntity = ({ entityName, propertyNames }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${apiUrl}/${entityName}`);
+        const response = await fetch(`${apiUrl}/${entityName}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -25,7 +30,11 @@ const TableEntity = ({ entityName, propertyNames }) => {
   useEffect(() => {
     const fetchCategoryNames = async () => {
       try {
-        const response = await fetch(`${apiUrl}/Category`);
+        const response = await fetch(`${apiUrl}/Category`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const categories = await response.json();
         const categoryNamesMap = {};
         categories.forEach((category) => {
@@ -50,6 +59,9 @@ const TableEntity = ({ entityName, propertyNames }) => {
       const token = localStorage.getItem("token");
       await fetch(`${apiUrl}/${entityName}/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
       const updatedData = data.filter((item) => item.id !== id);
       setData(updatedData);
@@ -101,8 +113,8 @@ const TableEntity = ({ entityName, propertyNames }) => {
                                 <img
                                   src={
                                     item[
-                                      propertyName.charAt(0).toLowerCase() +
-                                        propertyName.slice(1)
+                                    propertyName.charAt(0).toLowerCase() +
+                                    propertyName.slice(1)
                                     ]
                                   }
                                   alt="img"
@@ -114,17 +126,17 @@ const TableEntity = ({ entityName, propertyNames }) => {
                               <td key={propertyName}>
                                 {categoryNamesMap[
                                   item[
-                                    propertyName.charAt(0).toLowerCase() +
-                                      propertyName.slice(1)
+                                  propertyName.charAt(0).toLowerCase() +
+                                  propertyName.slice(1)
                                   ]
-                                ] }
+                                ]}
                               </td>
                             ) : (
                               <td key={propertyName}>
                                 {
                                   item[
-                                    propertyName.charAt(0).toLowerCase() +
-                                      propertyName.slice(1)
+                                  propertyName.charAt(0).toLowerCase() +
+                                  propertyName.slice(1)
                                   ]
                                 }
                               </td>

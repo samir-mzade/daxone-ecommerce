@@ -1,94 +1,105 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import chair from '../../assets/images/chair.webp';
 import chair2 from '../../assets/images/chair2.webp';
 import { Link } from 'react-router-dom';
+import { getAllData } from '../../assets/data/dataFetch';
+
 
 const ShopPage = () => {
+  // const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([])
+  const [colors, setColors] = useState([])
+
+  useEffect(() => {
+    getAllData("Category", setCategories);
+    getAllData("Color", setColors);
+  }, [])
 
   const productsList = [
     {
-        image: chair,
-        text: {
-            category:'Chair',
-            sale: '',
-            price: '$240.00',
-            salePrice: '',
-            title: 'Golden Easy Comfort Chair',
-        }
+      image: chair,
+      text: {
+        category: 'Chair',
+        sale: '',
+        price: '$240.00',
+        salePrice: '',
+        title: 'Golden Easy Comfort Chair',
+      }
     },
     {
-        image: chair2,
-        text: {
-            category:'Chair',
-            sale: '30% off',
-            price: '$210.00',
-            salePrice: '$550.00',
-            title: 'Silver Pency Comfort Chair',
-        }
-    }, 
-    {
-        image: chair,
-        text: {
-            category:'Chair',
-            sale: 'New',
-            price: '$210.00',
-            salePrice: '$550.00',
-            title: 'Silver Pency Comfort Chair',
-        }
-    },
-    {
-        image: chair2,
-        text: {
-            category:'Chair',
-            sale: 'Stock out',
-            price: '$210.00',
-            salePrice: '$550.00',
-            title: 'Silver Pency Comfort Chair',
-        }
-    },
-    {
-        image: chair2,
-        text: {
-            category:'Chair',
-            sale: 'Stock out',
-            price: '$210.00',
-            salePrice: '$550.00',
-            title: 'Silver Pency Comfort Chair',
-        }
+      image: chair2,
+      text: {
+        category: 'Chair',
+        sale: '30% off',
+        price: '$210.00',
+        salePrice: '$550.00',
+        title: 'Silver Pency Comfort Chair',
+      }
     },
     {
       image: chair,
       text: {
-          category:'Chair',
-          sale: 'New',
-          price: '$210.00',
-          salePrice: '$550.00',
-          title: 'Silver Pency Comfort Chair',
+        category: 'Chair',
+        sale: 'New',
+        price: '$210.00',
+        salePrice: '$550.00',
+        title: 'Silver Pency Comfort Chair',
       }
-  },
-  {
+    },
+    {
       image: chair2,
       text: {
-          category:'Chair',
-          sale: 'Stock out',
-          price: '$210.00',
-          salePrice: '$550.00',
-          title: 'Silver Pency Comfort Chair',
+        category: 'Chair',
+        sale: 'Stock out',
+        price: '$210.00',
+        salePrice: '$550.00',
+        title: 'Silver Pency Comfort Chair',
       }
-  },
-  {
+    },
+    {
       image: chair2,
       text: {
-          category:'Chair',
-          sale: 'Stock out',
-          price: '$210.00',
-          salePrice: '$550.00',
-          title: 'Silver Pency Comfort Chair',
+        category: 'Chair',
+        sale: 'Stock out',
+        price: '$210.00',
+        salePrice: '$550.00',
+        title: 'Silver Pency Comfort Chair',
       }
-  }
+    },
+    {
+      image: chair,
+      text: {
+        category: 'Chair',
+        sale: 'New',
+        price: '$210.00',
+        salePrice: '$550.00',
+        title: 'Silver Pency Comfort Chair',
+      }
+    },
+    {
+      image: chair2,
+      text: {
+        category: 'Chair',
+        sale: 'Stock out',
+        price: '$210.00',
+        salePrice: '$550.00',
+        title: 'Silver Pency Comfort Chair',
+      }
+    },
+    {
+      image: chair2,
+      text: {
+        category: 'Chair',
+        sale: 'Stock out',
+        price: '$210.00',
+        salePrice: '$550.00',
+        title: 'Silver Pency Comfort Chair',
+      }
+    }
   ];
-  
+
+
 
 
   return (
@@ -607,83 +618,16 @@ const ShopPage = () => {
                   <h4 className="sidebar-title">Shop By Categories</h4>
                   <div className="shop-category">
                     <ul>
-                      <li>
-                        <a className="category-name">
-                          Women Fashion
-                          <i className="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul className="shop-subcategory">
+                      {
+                        categories.map(category => (
                           <li>
-                            <a href="#">Dress</a>
+                            <a className='category-name'>
+                              {category.name}
+                            </a>
                           </li>
-                          <li>
-                            <a href="#">Shoes</a>
-                          </li>
-                          <li>
-                            <a href="#">Sunglasses</a>
-                          </li>
-                          <li>
-                            <a href="#">Sweater</a>
-                          </li>
-                          <li>
-                            <a href="#">Handbag</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a className="category-name">
-                          Men Fashion
-                          <i className="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul className="shop-subcategory">
-                          <li>
-                            <a href="#">Shirt</a>
-                          </li>
-                          <li>
-                            <a href="#">Shoes</a>
-                          </li>
-                          <li>
-                            <a href="#">Sunglasses</a>
-                          </li>
-                          <li>
-                            <a href="#">Sweater</a>
-                          </li>
-                          <li>
-                            <a href="#">Jacket</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a className="category-name">
-                          Furniture<i className="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul className="shop-subcategory">
-                          <li>
-                            <a href="#">Chair</a>
-                          </li>
-                          <li>
-                            <a href="#">Lift Chair</a>
-                          </li>
-                          <li>
-                            <a href="#">Bunk Bed</a>
-                          </li>
-                          <li>
-                            <a href="#">Computer Desk</a>
-                          </li>
-                          <li>
-                            <a href="#">Bookcase</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Lamp</a>
-                      </li>
-                      <li>
-                        <a href="#">Electronics</a>
-                      </li>
-                      <li>
-                        <a href="#">Accessories</a>
-                      </li>
+
+                        ))
+                      }
                     </ul>
                   </div>
                 </div>
@@ -740,7 +684,19 @@ const ShopPage = () => {
                 <div className="sidebar-wrapper checkbox colour">
                   <h4 className="sidebar-title">Colour</h4>
                   <div className="shop-checkbox">
-                    <label className="checkbox-container">
+
+                    {
+                      colors.map(color => (
+                        <label className="checkbox-container">
+                          <a href="#">
+                            {color.name}
+                          </a>
+                          <input type="checkbox" />
+                          <span className="checkmark"></span>
+                        </label>
+                      ))
+                    }
+                    {/* <label className="checkbox-container">
                       <a href="#">
                         Green <span>7</span>
                       </a>
@@ -769,7 +725,7 @@ const ShopPage = () => {
                       </a>
                       <input type="checkbox" />
                       <span className="checkmark"></span>
-                    </label>
+                    </label> */}
                   </div>
                 </div>
                 <div className="sidebar-wrapper checkbox size">

@@ -34,7 +34,11 @@ import SubCategory from "../admin/subCategory/SubCategory";
 import SubCategoryAdd from "../admin/subCategory/SubCategoryAdd";
 import SubCategoryEdit from "../admin/subCategory/SubCategoryEdit";
 
+
+
+
 const LinkRouter = () => {
+  
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -103,9 +107,5 @@ const LinkRouter = () => {
     </Routes>
   );
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> 4025dfd627dff652c468523a3112b5432b8da706
 
 export default LinkRouter;

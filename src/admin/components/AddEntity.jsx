@@ -36,6 +36,7 @@ const AddEntity = ({ entityName, propertyNames }) => {
       ...prevValues,
       [e.target.name]: e.target.value,
     }));
+    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
