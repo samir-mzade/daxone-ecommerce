@@ -33,14 +33,6 @@ const AddEntity = ({ entityName, propertyNames }) => {
   };
 
 
-  const handleInput = (e) => {
-    setFormData((prevValues) => ({
-      ...prevValues,
-      [e.target.name]: e.target.value,
-    }));
-    console.log(formData);
-  };
-
   const imageExistence = Object.keys(formData).some((key) =>
     key.toLowerCase().includes("imgpath")
   );
@@ -56,7 +48,6 @@ const AddEntity = ({ entityName, propertyNames }) => {
      setFormData((prevValues) => ({ ...prevValues, [property]: value }));
      console.log(formData);
    };
->>>>>>> 04c486c32aa03848d0ebfc8e92e8a47520d445eb
 
   const handleSubmit = async (e) => {
     e.preventDefault();
