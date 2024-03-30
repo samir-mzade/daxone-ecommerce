@@ -12,6 +12,9 @@ const Product = () => {
     "Model",
     "StockCount",
     "Description",
+    "SizeID",
+    "ColorID",
+    "ProductStatusID"
   ];
   return <TableEntity entityName={"Product"} propertyNames={properties} />;
 };

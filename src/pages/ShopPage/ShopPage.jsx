@@ -1,95 +1,128 @@
-import React from 'react';
-import ProductsList from '../../components/ProductsList/ProductsList';
+import React, { useState } from "react";
+import ProductsList from "../../components/ProductsList/ProductsList";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import chair from '../../assets/images/chair.webp';
-import chair2 from '../../assets/images/chair2.webp';
+import chair from "../../assets/images/chair.webp";
+import chair2 from "../../assets/images/chair2.webp";
+import { Link } from "react-router-dom";
 
 const ShopPage = () => {
+  //change shop content
+  const [activeContent, setActiveContent] = useState("shop1");
+
+  const changeContent = (contentId) => {
+    setActiveContent(contentId);
+  };
+
+  //accordion
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  const toggleDropdown = (index) => {
+    setActiveCategory(index === activeCategory ? null : index);
+  };
 
   const productsList = [
     {
-        image: chair,
-        text: {
-            category:'Chair',
-            sale: '',
-            price: '$240.00',
-            salePrice: '',
-            title: 'Golden Easy Comfort Chair',
-        }
+      image: chair,
+      text: {
+        category: "Chair",
+        sale: "",
+        price: "$240.00",
+        salePrice: "",
+        title: "Golden Easy Comfort Chair",
+      },
     },
     {
-        image: chair2,
-        text: {
-            category:'Chair',
-            sale: '30% off',
-            price: '$210.00',
-            salePrice: '$550.00',
-            title: 'Silver Pency Comfort Chair',
-        }
-    }, 
-    {
-        image: chair,
-        text: {
-            category:'Chair',
-            sale: 'New',
-            price: '$210.00',
-            salePrice: '$550.00',
-            title: 'Silver Pency Comfort Chair',
-        }
-    },
-    {
-        image: chair2,
-        text: {
-            category:'Chair',
-            sale: 'Stock out',
-            price: '$210.00',
-            salePrice: '$550.00',
-            title: 'Silver Pency Comfort Chair',
-        }
-    },
-    {
-        image: chair2,
-        text: {
-            category:'Chair',
-            sale: 'Stock out',
-            price: '$210.00',
-            salePrice: '$550.00',
-            title: 'Silver Pency Comfort Chair',
-        }
+      image: chair2,
+      text: {
+        category: "Chair",
+        sale: "30% off",
+        price: "$210.00",
+        salePrice: "$550.00",
+        title: "Silver Pency Comfort Chair",
+      },
     },
     {
       image: chair,
       text: {
-          category:'Chair',
-          sale: 'New',
-          price: '$210.00',
-          salePrice: '$550.00',
-          title: 'Silver Pency Comfort Chair',
-      }
-  },
-  {
+        category: "Chair",
+        sale: "New",
+        price: "$210.00",
+        salePrice: "$550.00",
+        title: "Silver Pency Comfort Chair",
+      },
+    },
+    {
       image: chair2,
       text: {
-          category:'Chair',
-          sale: 'Stock out',
-          price: '$210.00',
-          salePrice: '$550.00',
-          title: 'Silver Pency Comfort Chair',
-      }
-  },
-  {
+        category: "Chair",
+        sale: "Stock out",
+        price: "$210.00",
+        salePrice: "$550.00",
+        title: "Silver Pency Comfort Chair",
+      },
+    },
+    {
       image: chair2,
       text: {
-          category:'Chair',
-          sale: 'Stock out',
-          price: '$210.00',
-          salePrice: '$550.00',
-          title: 'Silver Pency Comfort Chair',
-      }
-  }
+        category: "Chair",
+        sale: "Stock out",
+        price: "$210.00",
+        salePrice: "$550.00",
+        title: "Silver Pency Comfort Chair",
+      },
+    },
+    {
+      image: chair,
+      text: {
+        category: "Chair",
+        sale: "New",
+        price: "$210.00",
+        salePrice: "$550.00",
+        title: "Silver Pency Comfort Chair",
+      },
+    },
+    {
+      image: chair2,
+      text: {
+        category: "Chair",
+        sale: "Stock out",
+        price: "$210.00",
+        salePrice: "$550.00",
+        title: "Silver Pency Comfort Chair",
+      },
+    },
+    {
+      image: chair2,
+      text: {
+        category: "Chair",
+        sale: "Stock out",
+        price: "$210.00",
+        salePrice: "$550.00",
+        title: "Silver Pency Comfort Chair",
+      },
+    },
   ];
-  
 
+  const categories = [
+    {
+      name: "Women Fashion",
+      subcategories: ["Dress", "Shoes", "Sunglasses", "Sweater", "Handbag"],
+    },
+    {
+      name: "Men Fashion",
+      subcategories: ["Shirt", "Shoes", "Sunglasses", "Sweater", "Jacket"],
+    },
+    {
+      name: "Furniture",
+      subcategories: [
+        "Chair",
+        "Lift Chair",
+        "Bunk Bed",
+        "Computer Desk",
+        "Bookcase",
+      ],
+    },
+  ];
 
   return (
     <>
@@ -101,15 +134,21 @@ const ShopPage = () => {
             <div className="col-lg-9">
               <div className="shop-product-topbar row">
                 <div className="icons-container col-1 d-flex justify-content-between align-items-center">
-                  <div className="active-btn pe-3">
-                    <a href="#shop1">
+                  <div className="pe-3">
+                    <Link
+                      className={activeContent === "shop1" ? "active-btn" : ""}
+                      onClick={() => changeContent("shop1")}
+                    >
                       <i className="fa-solid fa-table-cells"></i>
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a href="#shop2">
+                    <Link
+                      className={activeContent === "shop2" ? "active-btn" : ""}
+                      onClick={() => changeContent("shop2")}
+                    >
                       <i className="fa-solid fa-list"></i>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="topbar-info col-md-3 col-sm-7 col-12 offset-xl-0 offset-sm-1 offset-0 d-flex align-items-center justify-content-xl-center">
@@ -134,7 +173,12 @@ const ShopPage = () => {
                   </div>
                 </div>
               </div>
-              <div id="shop1" className="product-section shop1 active row">
+              <div
+                id="shop1"
+                className={`product-section shop1 row ${
+                  activeContent === "shop1" ? "active" : ""
+                }`}
+              >
                 <div className="product-area col-12">
                   <div className="product-boxs row">
                     <ProductsList
@@ -179,16 +223,18 @@ const ShopPage = () => {
                   </ul>
                 </div>
               </div>
-              <div id="shop2" className="product-section shop2 row">
+              <div
+                id="shop2"
+                className={`product-section shop2 row ${
+                  activeContent === "shop2" ? "active" : ""
+                }`}
+              >
                 <div className="products-wrap">
                   <div className="row">
                     <div className="image-wrap position-relative col-xl-4 col-lg-5 col-md-6 col-sm-6 col-10">
                       <div className="pro-img">
                         <a href="#">
-                          <img
-                            className="w-100"
-                            src="assets/images/products/pro-hm1-1.jpg"
-                          />
+                          <img className="w-100" src={chair} />
                         </a>
                       </div>
                       <div className="pro-quickview position-absolute">
@@ -237,10 +283,7 @@ const ShopPage = () => {
                     <div className="image-wrap position-relative col-xl-4 col-lg-5 col-md-6 col-sm-6 col-10">
                       <div className="pro-img">
                         <a href="#">
-                          <img
-                            className="w-100"
-                            src="assets/images/products/pro-hm1-2.jpg"
-                          />
+                          <img className="w-100" src={chair2} />
                         </a>
                       </div>
                       <div className="pro-quickview position-absolute">
@@ -288,10 +331,7 @@ const ShopPage = () => {
                     <div className="image-wrap position-relative col-xl-4 col-lg-5 col-md-6 col-sm-6 col-10">
                       <div className="pro-img">
                         <a href="#">
-                          <img
-                            className="w-100"
-                            src="assets/images/products/pro-hm1-3.jpg"
-                          />
+                          <img className="w-100" src={chair2} />
                         </a>
                       </div>
                       <div className="pro-quickview position-absolute">
@@ -340,10 +380,7 @@ const ShopPage = () => {
                     <div className="image-wrap position-relative col-xl-4 col-lg-5 col-md-6 col-sm-6 col-10">
                       <div className="pro-img">
                         <a href="#">
-                          <img
-                            className="w-100"
-                            src="assets/images/products/pro-hm1-4.jpg"
-                          />
+                          <img className="w-100" src={chair} />
                         </a>
                       </div>
                       <div className="pro-quickview position-absolute">
@@ -391,10 +428,7 @@ const ShopPage = () => {
                     <div className="image-wrap position-relative col-xl-4 col-lg-5 col-md-6 col-sm-6 col-10">
                       <div className="pro-img">
                         <a href="#">
-                          <img
-                            className="w-100"
-                            src="assets/images/products/pro-hm1-5.jpg"
-                          />
+                          <img className="w-100" src={chair2} />
                         </a>
                       </div>
                       <div className="pro-quickview position-absolute">
@@ -443,10 +477,7 @@ const ShopPage = () => {
                     <div className="image-wrap position-relative col-xl-4 col-lg-5 col-md-6 col-sm-6 col-10">
                       <div className="pro-img">
                         <a href="#">
-                          <img
-                            className="w-100"
-                            src="assets/images/products/pro-hm1-6.jpg"
-                          />
+                          <img className="w-100" src={chair2} />
                         </a>
                       </div>
                       <div className="pro-quickview position-absolute">
@@ -494,10 +525,7 @@ const ShopPage = () => {
                     <div className="image-wrap position-relative col-xl-4 col-lg-5 col-md-6 col-sm-6 col-10">
                       <div className="pro-img">
                         <a href="#">
-                          <img
-                            className="w-100"
-                            src="assets/images/products/pro-hm1-7.jpg"
-                          />
+                          <img className="w-100" src={chair2} />
                         </a>
                       </div>
                       <div className="pro-quickview position-absolute">
@@ -596,83 +624,30 @@ const ShopPage = () => {
                   <h4 className="sidebar-title">Shop By Categories</h4>
                   <div className="shop-category">
                     <ul>
-                      <li>
-                        <a className="category-name">
-                          Women Fashion
-                          <i className="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul className="shop-subcategory">
-                          <li>
-                            <a href="#">Dress</a>
-                          </li>
-                          <li>
-                            <a href="#">Shoes</a>
-                          </li>
-                          <li>
-                            <a href="#">Sunglasses</a>
-                          </li>
-                          <li>
-                            <a href="#">Sweater</a>
-                          </li>
-                          <li>
-                            <a href="#">Handbag</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a className="category-name">
-                          Men Fashion
-                          <i className="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul className="shop-subcategory">
-                          <li>
-                            <a href="#">Shirt</a>
-                          </li>
-                          <li>
-                            <a href="#">Shoes</a>
-                          </li>
-                          <li>
-                            <a href="#">Sunglasses</a>
-                          </li>
-                          <li>
-                            <a href="#">Sweater</a>
-                          </li>
-                          <li>
-                            <a href="#">Jacket</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a className="category-name">
-                          Furniture<i className="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul className="shop-subcategory">
-                          <li>
-                            <a href="#">Chair</a>
-                          </li>
-                          <li>
-                            <a href="#">Lift Chair</a>
-                          </li>
-                          <li>
-                            <a href="#">Bunk Bed</a>
-                          </li>
-                          <li>
-                            <a href="#">Computer Desk</a>
-                          </li>
-                          <li>
-                            <a href="#">Bookcase</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Lamp</a>
-                      </li>
-                      <li>
-                        <a href="#">Electronics</a>
-                      </li>
-                      <li>
-                        <a href="#">Accessories</a>
-                      </li>
+                      {categories.map((category, index) => (
+                        <li key={index}>
+                          <a
+                            className="category-name"
+                            onClick={() => toggleDropdown(index)}
+                          >
+                            {category.name}
+                            <i className="fa-solid fa-chevron-down"></i>
+                          </a>
+                          <ul
+                            className={`shop-subcategory ${
+                              activeCategory === index ? "active" : ""
+                            }`}
+                          >
+                            {category.subcategories.map(
+                              (subcategory, subIndex) => (
+                                <li key={subIndex}>
+                                  <a href="#">{subcategory}</a>
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -823,6 +798,6 @@ const ShopPage = () => {
       </section>
     </>
   );
-}
+};
 
-export default ShopPage
+export default ShopPage;
