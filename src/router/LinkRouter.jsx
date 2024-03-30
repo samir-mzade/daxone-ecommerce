@@ -33,7 +33,11 @@ import SubCategory from "../admin/subCategory/SubCategory";
 import SubCategoryAdd from "../admin/subCategory/SubCategoryAdd";
 import SubCategoryEdit from "../admin/subCategory/SubCategoryEdit";
 
+
+
+
 const LinkRouter = () => {
+  
   return (
     <Routes>
       <Route path="/" element={<Home />} />

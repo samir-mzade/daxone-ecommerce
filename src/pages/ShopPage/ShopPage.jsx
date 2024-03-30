@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductsList from "../../components/ProductsList/ProductsList";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import chair from "../../assets/images/chair.webp";
 import chair2 from "../../assets/images/chair2.webp";
 import { Link } from "react-router-dom";
+import { getAllData } from "../../assets/data/dataFetch";
 
 const ShopPage = () => {
   //change shop content
@@ -19,6 +20,14 @@ const ShopPage = () => {
   const toggleDropdown = (index) => {
     setActiveCategory(index === activeCategory ? null : index);
   };
+
+  const [categories, setCategories] = useState([]);
+  const [colors, setColors] = useState([]);
+
+  useEffect(() => {
+    getAllData("Category", setCategories);
+    getAllData("Color", setColors);
+  }, []);
 
   const productsList = [
     {
@@ -103,26 +112,26 @@ const ShopPage = () => {
     },
   ];
 
-  const categories = [
-    {
-      name: "Women Fashion",
-      subcategories: ["Dress", "Shoes", "Sunglasses", "Sweater", "Handbag"],
-    },
-    {
-      name: "Men Fashion",
-      subcategories: ["Shirt", "Shoes", "Sunglasses", "Sweater", "Jacket"],
-    },
-    {
-      name: "Furniture",
-      subcategories: [
-        "Chair",
-        "Lift Chair",
-        "Bunk Bed",
-        "Computer Desk",
-        "Bookcase",
-      ],
-    },
-  ];
+  // const categories = [
+  //   {
+  //     name: "Women Fashion",
+  //     subcategories: ["Dress", "Shoes", "Sunglasses", "Sweater", "Handbag"],
+  //   },
+  //   {
+  //     name: "Men Fashion",
+  //     subcategories: ["Shirt", "Shoes", "Sunglasses", "Sweater", "Jacket"],
+  //   },
+  //   {
+  //     name: "Furniture",
+  //     subcategories: [
+  //       "Chair",
+  //       "Lift Chair",
+  //       "Bunk Bed",
+  //       "Computer Desk",
+  //       "Bookcase",
+  //     ],
+  //   },
+  // ];
 
   return (
     <>
@@ -624,7 +633,7 @@ const ShopPage = () => {
                   <h4 className="sidebar-title">Shop By Categories</h4>
                   <div className="shop-category">
                     <ul>
-                      {categories.map((category, index) => (
+                      {/* {categories.map((category, index) => (
                         <li key={index}>
                           <a
                             className="category-name"
@@ -646,6 +655,11 @@ const ShopPage = () => {
                               )
                             )}
                           </ul>
+                        </li>
+                      ))} */}
+                      {categories.map((category) => (
+                        <li>
+                          <a className="category-name">{category.name}</a>
                         </li>
                       ))}
                     </ul>
@@ -704,7 +718,14 @@ const ShopPage = () => {
                 <div className="sidebar-wrapper checkbox colour">
                   <h4 className="sidebar-title">Colour</h4>
                   <div className="shop-checkbox">
-                    <label className="checkbox-container">
+                    {colors.map((color) => (
+                      <label className="checkbox-container">
+                        <a href="#">{color.name}</a>
+                        <input type="checkbox" />
+                        <span className="checkmark"></span>
+                      </label>
+                    ))}
+                    {/* <label className="checkbox-container">
                       <a href="#">
                         Green <span>7</span>
                       </a>
@@ -733,7 +754,7 @@ const ShopPage = () => {
                       </a>
                       <input type="checkbox" />
                       <span className="checkmark"></span>
-                    </label>
+                    </label> */}
                   </div>
                 </div>
                 <div className="sidebar-wrapper checkbox size">

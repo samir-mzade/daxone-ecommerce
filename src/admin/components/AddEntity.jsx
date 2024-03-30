@@ -32,6 +32,7 @@ const AddEntity = ({ entityName, propertyNames }) => {
     }
   };
 
+
   const imageExistence = Object.keys(formData).some((key) =>
     key.toLowerCase().includes("imgpath")
   );
